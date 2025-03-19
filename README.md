@@ -14,13 +14,13 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 ###  Jira Backlog
 
-  ![Backlog E1 ProjetoFDS](https://github.com/user-attachments/assets/560d8ca5-3e98-43c5-89c6-7867ecdf79ec)
+  ![Backlog ProjetoFDS E1](https://github.com/user-attachments/assets/e59a553f-abfd-46b8-a954-a733f5ccd03d)
 
 <br>
 
 ###  Jira Board 
 
-  ![Quadro Scrum E1 ProjetoFDS](https://github.com/user-attachments/assets/dcc735e1-e475-4a60-8192-58cad7e13f7d)
+  ![Quadro Scrum ProjetoFDS E1](https://github.com/user-attachments/assets/3b76db44-c798-4570-8cc8-de2777e0faf6)
 
 <br>
 
