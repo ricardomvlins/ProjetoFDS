@@ -2,6 +2,7 @@
 
 
 <details>
+  
 # RateHUB
 Sistema de Avaliação de Filmes ou Livros em Django.
 
