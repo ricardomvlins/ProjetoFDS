@@ -10,7 +10,7 @@ Quadro Scrum JIRA:
 ![Quadro Scrum E1 ProjetoFDS](https://github.com/user-attachments/assets/9edeb0f9-cec9-4c00-9836-5cee3c6f69f6)
 
 Backlog JIRA:
-(![Backlog E1 ProjetoFDS](https://github.com/user-attachments/assets/87efa703-a473-4fb6-83e9-e71ee14928ce))
+![Backlog E1 ProjetoFDS](https://github.com/user-attachments/assets/87efa703-a473-4fb6-83e9-e71ee14928ce)
 
 Protótipo Figma:
 🔗  https://www.figma.com/design/wTTIoAeH4rntdXPO1dhnbd/Untitled?node-id=0-1&t=ZKIAaW4zOOqN18Ek-1
