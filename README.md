@@ -7,10 +7,10 @@ Histórias de Usuário do Sistema:
 🔗  https://docs.google.com/document/d/1C1ATiOkRgh8XGtK15K-kD0kUU0PCHFfOijy_YYP672U/edit?usp=sharing
 
 Quadro Scrum JIRA:
-![Quadro Scrum E1 ProjetoFDS](https://github.com/user-attachments/assets/9edeb0f9-cec9-4c00-9836-5cee3c6f69f6)
+![Quadro Scrum E1 ProjetoFDS](https://github.com/user-attachments/assets/2ac83695-9b5f-4544-89bd-c56b97ec918f)
 
 Backlog JIRA:
-![Backlog E1 ProjetoFDS](https://github.com/user-attachments/assets/87efa703-a473-4fb6-83e9-e71ee14928ce)
+![Backlog E1 ProjetoFDS](https://github.com/user-attachments/assets/f9589188-d551-4515-a20d-27a340ded19a)
 
 Protótipo Figma:
 🔗  https://www.figma.com/design/wTTIoAeH4rntdXPO1dhnbd/Untitled?node-id=0-1&t=ZKIAaW4zOOqN18Ek-1
