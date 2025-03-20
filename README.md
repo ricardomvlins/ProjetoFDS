@@ -37,7 +37,7 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 ###  Screencast do Protótipo
 
 <p style="text-align: center; text-decoration: none;">
-  <a href="https://youtu.be/0ZEEHVqYnFA" style="text-decoration: none;">
+  <a href="https://youtu.be/oxTLIv9bLuc" style="text-decoration: none;">
     <span>🔗 Screencast do protótipo Lo-Fi (1)</span>
   </a>
 </p>
