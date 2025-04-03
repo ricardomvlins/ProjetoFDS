@@ -1,29 +1,48 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import CadastroAdmin
+from .models import CadastroUser
 from .models import AdcFilmesAdmin
 
 # Create your views here.
 
-def cadastroAdm(request):
+def cadastroAdmin(request):
     if request.method == 'POST':
-        nomeBD = request.POST.get('nomeInsert')
-        emailBD = request.POST.get('emailInsert')
-        senhaBD = request.POST.get('senhaInsert')
-        confirmarSenhaBD = request.POST.get('confirmarSenhaInsert')
+        nomeAdminBD = request.POST.get('nomeAdminInsert')
+        emailAdminBD = request.POST.get('emailAdminInsert')
+        senhaAdminBD = request.POST.get('senhaAdminInsert')
+        confirmarSenhaAdminBD = request.POST.get('confirmarSenhaAdminInsert')
 
         cadastroAdm = CadastroAdmin(
-            nomeInsert = nomeBD,
-            emailInsert = emailBD,
-            senhaInsert = senhaBD,
-            confirmarSenhaInsert = confirmarSenhaBD,
+            nomeAdminInsert = nomeAdminBD,
+            emailAdminInsert = emailAdminBD,
+            senhaAdminInsert = senhaAdminBD,
+            confirmarSenhaAdminInsert = confirmarSenhaAdminBD,
         )
 
-        cadastroAdm.save()
+        cadastroAdmin.save()
 
     return render(request, 'cadastroAdmin.html')
 
-def adcFilmesAdm(request):
+def cadastroUser(request):
+    if request.method == 'POST':
+        nomeUserBD = request.POST.get('nomeUserInsert')
+        emailUserBD = request.POST.get('emailUserInsert')
+        senhaUserBD = request.POST.get('senhaUserInsert')
+        confirmarSenhaUserBD = request.POST.get('confirmarSenhaUserInsert')
+
+        cadastroAdm = CadastroAdmin(
+            nomeUserInsert = nomeUserBD,
+            emailUserInsert = emailUserBD,
+            senhaUserInsert = senhaUserBD,
+            confirmarSenhaUserInsert = confirmarSenhaUserBD,
+        )
+
+        cadastroUser.save()
+
+    return render(request, 'cadastroUser.html')
+
+def adcFilmesAdmin(request):
     if request.method == 'POST':
         nomeFilmeBD = request.POST.get('nomeFilmeInsert')
         diretorFilmeBD = request.POST.get('diretorFilmeInsert')
