@@ -1,64 +1,82 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import CadastroAdmin
-from .models import CadastroUser
-from .models import AdcFilmesAdmin
+from .models import Cadastro
+from .models import Filmes
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'home.html')
+def homeAdmin(request):
+    return render(request, 'homeAdmin.html')
 
-def cadastroAdmin(request):
+def homeUser(request):
+    return render(request, 'homeUser.html')
+
+def login(request):
     if request.method == 'POST':
-        nomeAdminBD = request.POST.get('nomeAdminInsert')
-        emailAdminBD = request.POST.get('emailAdminInsert')
-        senhaAdminBD = request.POST.get('senhaAdminInsert')
-        confirmarSenhaAdminBD = request.POST.get('confirmarSenhaAdminInsert')
+        nomeBD = request.POST.get('nome')
+        emailBD = request.POST.get('email')
+        senhaBD = request.POST.get('senha')
+        confirmarSenhaBD = request.POST.get('confirmarSenha')
 
-        cadastroAdm = CadastroAdmin(
-            nomeAdminInsert = nomeAdminBD,
-            emailAdminInsert = emailAdminBD,
-            senhaAdminInsert = senhaAdminBD,
-            confirmarSenhaAdminInsert = confirmarSenhaAdminBD,
-        )
+        user = authenticate(request, nome=nomeBD, email=emailBD, senha=senhaBD, confirmarSenha=confirmarSenhaBD)
 
-        cadastroAdmin.save()
+        if user is not None:
+            login(request, user)
 
-    return render(request, 'cadastroAdmin.html')
+            if user.is_superuser:
+                return redirect('homeAdmin') 
+            else:
+                return redirect('homeUser')   
+        
+        else:
+            mensagem = "Alguma informação está inválida. Tente novamente"
+            tipoMensagem = "error"
+            return render(request, 'login.html', {'mensagem': mensagem, 'tipo_mensagem': tipoMensagem})
+    else:
+        return render(request, 'login.html')
 
-def cadastroUser(request):
+def cadastro(request):
     if request.method == 'POST':
-        nomeUserBD = request.POST.get('nomeUserInsert')
-        emailUserBD = request.POST.get('emailUserInsert')
-        senhaUserBD = request.POST.get('senhaUserInsert')
-        confirmarSenhaUserBD = request.POST.get('confirmarSenhaUserInsert')
+        nomeBD = request.POST.get('nome')
+        emailBD = request.POST.get('email')
+        senhaBD = request.POST.get('senha')
+        confirmarSenhaBD = request.POST.get('confirmarSenha')
 
-        cadastroAdm = CadastroAdmin(
-            nomeUserInsert = nomeUserBD,
-            emailUserInsert = emailUserBD,
-            senhaUserInsert = senhaUserBD,
-            confirmarSenhaUserInsert = confirmarSenhaUserBD,
-        )
+        user = User.objects.filter(nome=nomeBD).first()
 
-        cadastroUser.save()
+        if user:
+            mensagem = "Já existe um usuário com esse nome. Tente novamente"
+            tipoMensagem = "error"
+            return render(request, 'cadastro.html', {'mensagem': mensagem, 'tipo_mensagem':tipoMensagem})
 
-    return render(request, 'cadastroUser.html')
+        else:
+            user = User.objects.create_user(nome=nomeBD, senha=senhaBD)
+            user.save()
+            mensagem = "Usuário criado com sucesso. Faça o login clicando aqui"
+            tipoMensagem = "sucess"
 
-def adcFilmesAdmin(request):
+    return render(request, 'cadastro.html')
+
+def filmes(request):
     if request.method == 'POST':
         nomeFilmeBD = request.POST.get('nomeFilmeInsert')
         diretorFilmeBD = request.POST.get('diretorFilmeInsert')
         anoFilmeBD = request.POST.get('anoFilmeInsert')
         generoFilmeBD = request.POST.get('generoFilmeInsert')
 
-        adcFilmesAdm = AdcFilmesAdmin(
+        filmes = Filmes(
             nomeFilmeInsert = nomeFilmeBD,
             diretorFilmeInsert = diretorFilmeBD,
             anoFilmeInsert = anoFilmeBD,
             generoFilmeInsert = generoFilmeBD,
         )
 
-        adcFilmesAdm.save()
+        filmes.save()
 
     return render(request, 'adcFilmeAdmin.html')
+
+def visuFilmesUser(request):
+    filmes = Filmes.objects.all()
+    return render(request, 'visuFilmeUser.html',{'Filmes': filmes})
