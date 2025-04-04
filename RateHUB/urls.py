@@ -1,13 +1,7 @@
-from django.urls import path, include
-from Aplicativo import views
 from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('Home_Admin/',views.homeAdmin, name='homeAdminNomePath'),
-    path('Home_User/',views.homeUser, name='homeUserNomePath'),
-    path('', views.login, name='loginNomePath'),
-    path('Cadastro/', views.cadastro, name='cadastroNomePath'),
-    path('Adicionar_Filmes_Admin/', views.Filmes, name='adcFilmesAdmNomePath'),
-    path('Visualizar_Filmes_User/', views.visuFilmesUser, name='visuFilmesUserNomePath'),
-    path('Banco_Dados/', admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('', include('Aplicativo.urls')),  # Substitua "core" pelo nome real da sua app
 ]
