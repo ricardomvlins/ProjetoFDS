@@ -11,7 +11,8 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
             <h3 class="text-center mb-4">Cadastro</h3>
-            <form action="Adicionar_Filmes_Adm/" method="POST">
+            <form action={% url 'cadastroNomePath' %} method="POST">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome Completo</label>
                     <input type="text" class="form-control" id="nome" name="nome" required>
@@ -37,7 +38,7 @@
                 {% endif %}
             </form>
             <div class="text-center mt-3">
-                <p>Já tem uma conta? Faça o <a href="Cadastro/">login</a></p>
+                <p>Já tem uma conta? Faça o <a href="{% url 'loginNomePath' %}">login</a></p>
             </div>
         </div>
     </div>

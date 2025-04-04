@@ -20,7 +20,7 @@ def login(request):
         senhaBD = request.POST.get('senha')
         confirmarSenhaBD = request.POST.get('confirmarSenha')
 
-        user = authenticate(request, nome=nomeBD, email=emailBD, senha=senhaBD, confirmarSenha=confirmarSenhaBD)
+        user = authenticate(request, username=nomeBD, password=senhaBD)
 
         if user is not None:
             login(request, user)
@@ -44,7 +44,7 @@ def cadastro(request):
         senhaBD = request.POST.get('senha')
         confirmarSenhaBD = request.POST.get('confirmarSenha')
 
-        user = User.objects.filter(nome=nomeBD).first()
+        user = User.objects.filter(username=nomeBD).first()
 
         if user:
             mensagem = "Já existe um usuário com esse nome. Tente novamente"
@@ -52,7 +52,7 @@ def cadastro(request):
             return render(request, 'cadastro.html', {'mensagem': mensagem, 'tipo_mensagem':tipoMensagem})
 
         else:
-            user = User.objects.create_user(nome=nomeBD, senha=senhaBD)
+            user = User.objects.create_user(username=nomeBD, password=senhaBD)
             user.save()
             mensagem = "Usuário criado com sucesso. Faça o login clicando aqui"
             tipoMensagem = "sucess"

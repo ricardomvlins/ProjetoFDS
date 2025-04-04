@@ -11,7 +11,8 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
             <h3 class="text-center mb-4">Login</h3>
-            <form>
+            <form action={% url 'loginNomePath' %} method="POST">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome Completo</label>
                     <input type="text" class="form-control" id="nome" required>
