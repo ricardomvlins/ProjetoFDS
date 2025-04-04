@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -73,26 +73,34 @@
 
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            <input type="text" name="nome" placeholder="Nome completo" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <input type="password" name="confirmarSenha" placeholder="Confirmar Senha" required>
+            <label>
+                <input type="checkbox" name="is_admin"> Sou administrador
+            </label>
             <br><br>
             <input type="submit" value="Cadastrar">
         </form>        
 
         {% if tipo_mensagem == 'success' %}
-        <div class="mensagem sucesso">
-            <p>{{ mensagem }}</p>
-            {% if is_admin %}
-                <p>Você se cadastrou como <strong>Administrador</strong>.</p>
-            {% else %}
-                <p>Você se cadastrou como <strong>Usuário</strong>.</p>
-            {% endif %}
-        <a href="{% url 'login' %}" class="btn-login">Clique aqui para fazer login</a>
-    </div>
-{% elif tipo_mensagem == 'error' %}
-    <div class="mensagem erro">
-        <p>{{ mensagem }}</p>
-    </div>
-{% endif %}
+            <div class="mensagem sucesso">
+                <p>{{ mensagem }}</p>
+                {% if is_admin %}
+                    <p>Você se cadastrou como <strong>Administrador</strong>.</p>
+                {% else %}
+                    <p>Você se cadastrou como <strong>Usuário</strong>.</p>
+                {% endif %}
+                <div class="login-link">
+                    <a href="{% url 'login' %}">Clique aqui para fazer login</a>
+                </div>
+            </div>
+        {% elif tipo_mensagem == 'error' %}
+            <div class="mensagem erro">
+                <p>{{ mensagem }}</p>
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>

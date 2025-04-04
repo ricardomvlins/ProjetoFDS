@@ -80,7 +80,7 @@
         <h2>{{ filme.titulo }}</h2>
         <p style="text-align: center;">{{ filme.descricao }}</p>
 
-        <h3>Deixe sua resenha</h3>
+        <h3>Deixe a sua opnião!</h3>
         <form method="POST">
             {% csrf_token %}
             <textarea name="comentario" placeholder="Escreva sua opinião" required></textarea>
@@ -114,7 +114,7 @@
                 <p>{{ comentario.texto }}</p>
             </div>
         {% empty %}
-            <p class="no-comentarios">Sem comentários ainda.</p>
+            <p class="no-comentarios">Sem comentários ainda. Faça o seu!</p>
         {% endfor %}
     </div>
 </body>
