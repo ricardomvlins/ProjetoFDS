@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Cadastro(models.Model):
     nome = models.CharField(max_length=100, default='usuario_temp')
@@ -16,4 +17,11 @@ class Filmes(models.Model):
 
     def __str__(self):
         return self.titulo
-    
+
+class Favorito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    filme = models.ForeignKey(Filmes, on_delete=models.CASCADE)
+    data_favoritado = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('usuario', 'filme')

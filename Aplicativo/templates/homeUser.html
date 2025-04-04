@@ -1,3 +1,26 @@
+<<<<<<< HEAD
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>Bem-vindo ao RateHUB</h1>
+    <p class="lead">O lugar favorito de todo cinéfilo!</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'visuFilmesUserNomePath' %}" class="btn btn-primary btn-lg w-100">Visualizar Filmes no Catálogo</a>
+        </div>
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'meus_favoritos' %}" class="btn btn-outline-primary btn-lg w-100">Meus Filmes Favoritos</a>
+        </div>
+    </div>
+
+    <hr class="my-4">
+</div>
+{% endblock %}
+=======
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -49,3 +72,4 @@
     </div>
 </body>
 </html>
+>>>>>>> 9cee99f345fbef577cba6acd3aef7d9ecaecf339
