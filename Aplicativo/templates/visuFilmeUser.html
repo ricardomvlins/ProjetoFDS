@@ -1,61 +1,80 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmes Cadastrados</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
 
-{% block title %}Filmes{% endblock %}
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
 
-{% block content %}
-<div class="container mt-4">
-    <h2>Filmes Disponíveis</h2>
-    <div class="row">
-        {% for filme in Filmes %}
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ filme.titulo }}</h5>
-                        <p class="card-text">
-                            <strong>Diretor:</strong> {{ filme.diretor }}<br>
-                            <strong>Ano:</strong> {{ filme.ano }}<br>
-                            <strong>Gênero:</strong> {{ filme.genero }}
-                        </p>
-                        <button class="btn {% if filme.id in favoritos %}btn-danger{% else %}btn-outline-danger{% endif %} btn-sm toggle-favorito" 
-                                data-filme-id="{{ filme.id }}">
-                            {% if filme.id in favoritos %}
-                                Remover dos Favoritos
-                            {% else %}
-                                Adicionar aos Favoritos
-                            {% endif %}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Filmes Cadastrados</h2>
+
+        {% if filmes %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Diretor</th>
+                        <th>Ano</th>
+                        <th>Gênero</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for filme in filmes %}
+                        <tr>
+                            <td>{{ filme.titulo }}</td>
+                            <td>{{ filme.diretor }}</td>
+                            <td>{{ filme.ano }}</td>
+                            <td>{{ filme.genero }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="text-align: center;">Nenhum filme cadastrado ainda.</p>
+        {% endif %}
     </div>
-</div>
-{% endblock %}
-
-{% block scripts %}
-<script>
-document.querySelectorAll('.toggle-favorito').forEach(button => {
-    button.addEventListener('click', function() {
-        const filmeId = this.dataset.filmeId;
-        fetch(`/toggle-favorito/${filmeId}/`, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': '{{ csrf_token }}',
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'added') {
-                this.classList.remove('btn-outline-danger');
-                this.classList.add('btn-danger');
-                this.textContent = 'Remover dos Favoritos';
-            } else {
-                this.classList.remove('btn-danger');
-                this.classList.add('btn-outline-danger');
-                this.textContent = 'Adicionar aos Favoritos';
-            }
-        });
-    });
-});
-</script>
-{% endblock %}
+</body>
+</html>
