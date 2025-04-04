@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ filme.titulo }} - Detalhes</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .comentario {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .comentario strong {
+            color: #333;
+        }
+
+        .comentario hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .no-comentarios {
+            text-align: center;
+            color: #777;
+        }
+
+        .estrelas {
+            color: gold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ filme.titulo }}</h2>
+        <p style="text-align: center;">{{ filme.descricao }}</p>
+
+        <h3>Deixe sua resenha</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="comentario" placeholder="Escreva sua opinião" required></textarea>
+
+            <label for="nota">Nota:</label>
+            <select name="nota" required>
+                {% for i in "012345"|make_list %}
+                    <option value="{{ forloop.counter0 }}">
+                        {{ forloop.counter0 }} estrela{% if forloop.counter0 != 1 %}s{% endif %}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="Enviar">
+        </form>
+
+        <h3>Comentários</h3>
+        {% for comentario in comentarios %}
+            <div class="comentario">
+                <strong>{{ comentario.usuario.username }}</strong>
+                <div class="estrelas">
+                    {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= comentario.nota %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <hr>
+                <p>{{ comentario.texto }}</p>
+            </div>
+        {% empty %}
+            <p class="no-comentarios">Sem comentários ainda.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

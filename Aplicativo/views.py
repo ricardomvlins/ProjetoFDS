@@ -113,3 +113,29 @@ def visuFilmeUser(request):
     filmes = Filmes.objects.all()
 
     return render(request, 'visuFilmeUser.html', {'filmes': filmes})
+
+from .models import Filmes, Comentario
+from django.shortcuts import render, get_object_or_404, redirect
+
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Filmes, Comentario
+
+def avaliacaoFilmeUser(request, filme_id):
+    filme = get_object_or_404(Filmes, id=filme_id)
+    comentarios = Comentario.objects.filter(filme=filme).order_by('-id')  # Buscar os comentários do filme
+
+    if request.method == 'POST':
+        comentario = request.POST.get('comentario')
+        nota = request.POST.get('nota')
+        Comentario.objects.create(
+            usuario=request.user,
+            filme=filme,
+            texto=comentario,
+            nota=nota
+        )
+        return redirect('avaliacaoFilmeUser', filme_id=filme.id)
+
+    return render(request, 'avaliacaoFilmeUser.html', {
+        'filme': filme,
+        'comentarios': comentarios  # Passando os comentários para o template
+    })

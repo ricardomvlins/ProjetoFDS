@@ -45,6 +45,16 @@
         tr:nth-child(even) {
             background-color: #fafafa;
         }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +74,7 @@
                 <tbody>
                     {% for filme in filmes %}
                         <tr>
-                            <td>{{ filme.titulo }}</td>
+                            <td><a href="{% url 'avaliacaoFilmeUser' filme.id %}">{{ filme.titulo }}</a></td>                            
                             <td>{{ filme.diretor }}</td>
                             <td>{{ filme.ano }}</td>
                             <td>{{ filme.genero }}</td>
