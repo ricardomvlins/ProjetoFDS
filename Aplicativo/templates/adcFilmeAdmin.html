@@ -2,74 +2,67 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Filme</title>
     <style>
         body {
+            background-color: #f7f7f7;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
+
         .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 80px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
         }
+
         h2 {
             text-align: center;
+            margin-bottom: 25px;
         }
-        label {
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
+
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 10px;
-            background: #28a745;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
             color: white;
+            padding: 10px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
         }
-        button:hover {
-            background: #218838;
+
+        .mensagem {
+            text-align: center;
+            margin-bottom: 15px;
+            color: {% if tipo_mensagem == 'success' %}green{% else %}red{% endif %};
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Adicionar Novo Filme</h2>
-        <form action="/adicionar_filme/" method="post">
-            <label for="nomeFilmeInsert">Nome do Filme:</label>
-            <input type="text" id="nome" name="nome" required>
-            
-            <label for="diretorFilmeInsert">Diretor:</label>
-            <input type="text" id="diretor" name="diretor" required>
-            
-            <label for="anoFilmeInsert">Ano de Lançamento:</label>
-            <input type="number" id="ano" name="ano" min="1900" max="2025" required>
-            
-            <label for="generoFilmeInsert">Gênero:</label>
-            <select id="genero" name="genero" required>
-                <option value="acao">Ação</option>
-                <option value="aventura">Aventura</option>
-                <option value="comedia">Comédia</option>
-                <option value="drama">Drama</option>
-                <option value="ficcao">Ficção Científica</option>
-                <option value="terror">Terror</option>
-            </select>
-            
-            <button type="submit">Adicionar Filme</button>
+        <h2>Adicionar Filme</h2>
+
+        {% if mensagem %}
+            <div class="mensagem">{{ mensagem }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="titulo" placeholder="Título do Filme">
+            <input type="text" name="diretor" placeholder="Diretor">
+            <input type="number" name="ano" placeholder="Ano de Lançamento">
+            <input type="text" name="genero" placeholder="Gênero">
+            <input type="submit" value="Cadastrar Filme">
         </form>
     </div>
 </body>

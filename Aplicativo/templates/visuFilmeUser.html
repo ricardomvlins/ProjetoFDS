@@ -10,11 +10,11 @@
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ filme.nomeFilmeBD }}</h5>
+                        <h5 class="card-title">{{ filme.titulo }}</h5>
                         <p class="card-text">
-                            <strong>Diretor:</strong> {{ filme.diretorFilmeBD }}<br>
-                            <strong>Ano:</strong> {{ filme.anoFilmeBD }}<br>
-                            <strong>Gênero:</strong> {{ filme.generoFilmeBD }}
+                            <strong>Diretor:</strong> {{ filme.diretor }}<br>
+                            <strong>Ano:</strong> {{ filme.ano }}<br>
+                            <strong>Gênero:</strong> {{ filme.genero }}
                         </p>
                         <button class="btn {% if filme.id in favoritos %}btn-danger{% else %}btn-outline-danger{% endif %} btn-sm toggle-favorito" 
                                 data-filme-id="{{ filme.id }}">

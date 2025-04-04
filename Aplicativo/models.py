@@ -1,19 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
 class Cadastro(models.Model):
-    nomeBD = models.TextField(null=True, blank=True)
-    emailBD = models.EmailField(null=True, blank=True)
-    senhaBD = models.TextField(null=True, blank=True)
-    confirmarSenhaBD = models.TextField(null=True, blank=True)
+    nome = models.CharField(max_length=100, default='usuario_temp')
+    email = models.EmailField(default='temp@email.com')
+    senha = models.CharField(max_length=100, default='senha123')
+
+    def __str__(self):
+        return self.nome
 
 class Filmes(models.Model):
-    nomeFilmeBD = models.TextField(null=True, blank=True)
-    diretorFilmeBD = models.TextField(null=True, blank=True)
-    anoFilmeBD = models.IntegerField(null=True, blank=True)
-    generoFilmeBD = models.TextField(null=True, blank=True)
+    titulo = models.CharField(max_length=100, default='Título não informado')
+    diretor = models.CharField(max_length=100, default='Diretor não informado')
+    ano = models.IntegerField(default=1900)
+    genero = models.CharField(max_length=50, default='Gênero não informado')
+
+    def __str__(self):
+        return self.titulo
 
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from .models import Cadastro, Filmes, Favorito
@@ -6,6 +7,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+=======
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from .models import Cadastro, Filmes
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.models import User
+from .forms import CadastroForm
+>>>>>>> 9cee99f345fbef577cba6acd3aef7d9ecaecf339
 
 def homeAdmin(request):
     return render(request, 'homeAdmin.html')
@@ -13,6 +22,7 @@ def homeAdmin(request):
 def homeUser(request):
     return render(request, 'homeUser.html')
 
+<<<<<<< HEAD
 def login(request):
     next_url = request.GET.get('next')
     
@@ -48,14 +58,37 @@ def login(request):
 def logout_view(request):
     logout(request)
     return redirect('loginNomePath')
+=======
+def login_view(request):
+    if request.method == 'POST':
+        nomeBD = request.POST.get('nome')
+        senhaBD = request.POST.get('senha')
+
+        user = authenticate(request, username=nomeBD, password=senhaBD)
+
+        if user is not None:
+            auth_login(request, user)
+            if user.is_superuser:
+                return redirect('homeAdmin')
+            else:
+                return redirect('homeUser')
+        else:
+            mensagem = "Nome de usuário ou senha inválidos."
+            return render(request, 'login.html', {'mensagem': mensagem, 'tipo_mensagem': 'error'})
+    else:
+        return render(request, 'login.html')
+>>>>>>> 9cee99f345fbef577cba6acd3aef7d9ecaecf339
+
+from .forms import CadastroForm
+from django.contrib.auth.models import User
+
+from .forms import CadastroForm
 
 def cadastro(request):
     if request.method == 'POST':
-        nomeBD = request.POST.get('nome')
-        emailBD = request.POST.get('email')
-        senhaBD = request.POST.get('senha')
-        confirmarSenhaBD = request.POST.get('confirmarSenha')
+        form = CadastroForm(request.POST)
 
+<<<<<<< HEAD
         if senhaBD != confirmarSenhaBD:
             mensagem = "As senhas não coincidem. Tente novamente."
             tipoMensagem = "error"
@@ -73,28 +106,90 @@ def cadastro(request):
             mensagem = "Usuário criado com sucesso. Faça o login clicando aqui"
             tipoMensagem = "sucess"
             return render(request, 'cadastro.html', {'mensagem': mensagem, 'tipo_mensagem': tipoMensagem})
+=======
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            senha = form.cleaned_data['senha']
+            confirmar_senha = form.cleaned_data['confirmar_senha']
+            is_admin = form.cleaned_data.get('is_admin', False)
 
-    return render(request, 'cadastro.html')
+            if senha != confirmar_senha:
+                return render(request, 'cadastro.html', {
+                    'form': form,
+                    'mensagem': 'As senhas não coincidem.',
+                    'tipo_mensagem': 'error'
+                })
+
+            if User.objects.filter(username=nome).exists():
+                return render(request, 'cadastro.html', {
+                    'form': form,
+                    'mensagem': 'Nome de usuário já está em uso.',
+                    'tipo_mensagem': 'error'
+                })
+
+            user = User.objects.create_user(
+                username=nome,
+                email=email,
+                password=senha,
+                is_superuser=is_admin,
+                is_staff=is_admin
+            )
+            user.save()
+>>>>>>> 9cee99f345fbef577cba6acd3aef7d9ecaecf339
+
+            # Mostra mensagem de sucesso e botão para login
+            return render(request, 'cadastro.html', {
+                'form': CadastroForm(),  # limpa o formulário
+                'mensagem': 'Cadastro realizado com sucesso!',
+                'tipo_mensagem': 'success',
+                'is_admin': is_admin
+            })
+    else:
+        form = CadastroForm()
+
+    return render(request, 'cadastro.html', {'form': form})
 
 @login_required
 def filmes(request):
     if request.method == 'POST':
-        nomeFilmeBD = request.POST.get('nomeFilmeInsert')
-        diretorFilmeBD = request.POST.get('diretorFilmeInsert')
-        anoFilmeBD = request.POST.get('anoFilmeInsert')
-        generoFilmeBD = request.POST.get('generoFilmeInsert')
+        titulo = request.POST.get('titulo', '').strip()
+        diretor = request.POST.get('diretor', '').strip()
+        ano = request.POST.get('ano', '').strip()
+        genero = request.POST.get('genero', '').strip()
 
+<<<<<<< HEAD
         filmes = Filmes(
             nomeFilmeBD = nomeFilmeBD,
             diretorFilmeBD = diretorFilmeBD,
             anoFilmeBD = anoFilmeBD,
             generoFilmeBD = generoFilmeBD,
-        )
+=======
+        if not titulo or not diretor or not ano or not genero:
+            mensagem = "Todos os campos são obrigatórios!"
+            return render(request, 'adcFilmeAdmin.html', {'mensagem': mensagem, 'tipo_mensagem': 'error'})
 
-        filmes.save()
+        try:
+            ano = int(ano)
+        except ValueError:
+            mensagem = "Ano deve ser um número válido!"
+            return render(request, 'adcFilmeAdmin.html', {'mensagem': mensagem, 'tipo_mensagem': 'error'})
+
+        novo_filme = Filmes(
+            titulo=titulo,
+            diretor=diretor,
+            ano=ano,
+            genero=genero,
+>>>>>>> 9cee99f345fbef577cba6acd3aef7d9ecaecf339
+        )
+        novo_filme.save()
+
+        mensagem = "Filme cadastrado com sucesso!"
+        return render(request, 'adcFilmeAdmin.html', {'mensagem': mensagem, 'tipo_mensagem': 'success'})
 
     return render(request, 'adcFilmeAdmin.html')
 
+<<<<<<< HEAD
 @login_required
 def visuFilmesUser(request):
     filmes = Filmes.objects.all()
@@ -119,3 +214,8 @@ def toggle_favorito(request, filme_id):
 def meus_favoritos(request):
     favoritos = Favorito.objects.filter(usuario=request.user).select_related('filme')
     return render(request, 'meus_favoritos.html', {'favoritos': favoritos})
+=======
+def visuFilmeUser(request):
+    filmes = Filmes.objects.all()
+    return render(request, 'visuFilmeUser.html', {'filmes': filmes})
+>>>>>>> 9cee99f345fbef577cba6acd3aef7d9ecaecf339

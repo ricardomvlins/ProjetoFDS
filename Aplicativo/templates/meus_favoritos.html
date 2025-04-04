@@ -12,11 +12,11 @@
                 <div class="col-md-4 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{ favorito.filme.nomeFilmeBD }}</h5>
+                            <h5 class="card-title">{{ favorito.filme.titulo }}</h5>
                             <p class="card-text">
-                                <strong>Diretor:</strong> {{ favorito.filme.diretorFilmeBD }}<br>
-                                <strong>Ano:</strong> {{ favorito.filme.anoFilmeBD }}<br>
-                                <strong>Gênero:</strong> {{ favorito.filme.generoFilmeBD }}
+                                <strong>Diretor:</strong> {{ favorito.filme.diretor }}<br>
+                                <strong>Ano:</strong> {{ favorito.filme.ano }}<br>
+                                <strong>Gênero:</strong> {{ favorito.filme.genero }}
                             </p>
                             <button class="btn btn-danger btn-sm toggle-favorito" data-filme-id="{{ favorito.filme.id }}">
                                 Remover dos Favoritos

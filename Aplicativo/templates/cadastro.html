@@ -1,47 +1,102 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RateHUB - cadastro</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Cadastro</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            margin: 80px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mensagem {
+            text-align: center;
+            margin-bottom: 15px;
+            color: {% if tipo_mensagem == 'success' %}green{% else %}red{% endif %};
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
+    <div class="container">
+        <h2>Cadastro</h2>
 
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
-            <h3 class="text-center mb-4">Cadastro</h3>
-            <form action={% url 'cadastroNomePath' %} method="POST">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome Completo</label>
-                    <input type="text" class="form-control" id="nome" name="nome" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" required>
-                </div>
-                <div class="mb-3">
-                    <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
-                    <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-                
-                {% if mensagem %}
-                <div class="mensagem {{ tipoMensagem}}">
-                    {{ mensagem }}
-                </div>
-                {% endif %}
-            </form>
-            <div class="text-center mt-3">
-                <p>Já tem uma conta? Faça o <a href="{% url 'loginNomePath' %}">login</a></p>
-            </div>
-        </div>
+        {% if mensagem %}
+            <div class="mensagem">{{ mensagem }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <label>
+                <input type="checkbox" name="is_admin" {% if is_admin %}checked{% endif %}>
+                Cadastrar como administrador
+            </label>
+            <br><br>
+            <input type="submit" value="Cadastrar">
+        </form>        
+
+        {% if tipo_mensagem == 'success' %}
+        <div class="mensagem sucesso">
+            <p>{{ mensagem }}</p>
+            {% if is_admin %}
+                <p>Você se cadastrou como <strong>Administrador</strong>.</p>
+            {% else %}
+                <p>Você se cadastrou como <strong>Usuário</strong>.</p>
+            {% endif %}
+        <a href="{% url 'login' %}" class="btn-login">Clique aqui para fazer login</a>
     </div>
-
+{% elif tipo_mensagem == 'error' %}
+    <div class="mensagem erro">
+        <p>{{ mensagem }}</p>
+    </div>
+{% endif %}
+    </div>
 </body>
 </html>
