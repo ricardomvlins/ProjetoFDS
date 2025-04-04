@@ -74,10 +74,6 @@
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <label>
-                <input type="checkbox" name="is_admin" {% if is_admin %}checked{% endif %}>
-                Cadastrar como administrador
-            </label>
             <br><br>
             <input type="submit" value="Cadastrar">
         </form>        
