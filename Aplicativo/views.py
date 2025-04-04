@@ -6,6 +6,9 @@ from .models import AdcFilmesAdmin
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'home.html')
+
 def cadastroAdmin(request):
     if request.method == 'POST':
         nomeAdminBD = request.POST.get('nomeAdminInsert')
