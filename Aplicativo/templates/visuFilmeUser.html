@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Filmes{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Filmes Disponíveis</h2>
+    <div class="row">
+        {% for filme in Filmes %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ filme.nomeFilmeBD }}</h5>
+                        <p class="card-text">
+                            <strong>Diretor:</strong> {{ filme.diretorFilmeBD }}<br>
+                            <strong>Ano:</strong> {{ filme.anoFilmeBD }}<br>
+                            <strong>Gênero:</strong> {{ filme.generoFilmeBD }}
+                        </p>
+                        <button class="btn {% if filme.id in favoritos %}btn-danger{% else %}btn-outline-danger{% endif %} btn-sm toggle-favorito" 
+                                data-filme-id="{{ filme.id }}">
+                            {% if filme.id in favoritos %}
+                                Remover dos Favoritos
+                            {% else %}
+                                Adicionar aos Favoritos
+                            {% endif %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.toggle-favorito').forEach(button => {
+    button.addEventListener('click', function() {
+        const filmeId = this.dataset.filmeId;
+        fetch(`/toggle-favorito/${filmeId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'added') {
+                this.classList.remove('btn-outline-danger');
+                this.classList.add('btn-danger');
+                this.textContent = 'Remover dos Favoritos';
+            } else {
+                this.classList.remove('btn-danger');
+                this.classList.add('btn-outline-danger');
+                this.textContent = 'Adicionar aos Favoritos';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

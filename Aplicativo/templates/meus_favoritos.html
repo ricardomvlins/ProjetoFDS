@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Favoritos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Meus Filmes Favoritos</h2>
+    
+    {% if favoritos %}
+        <div class="row">
+            {% for favorito in favoritos %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ favorito.filme.nomeFilmeBD }}</h5>
+                            <p class="card-text">
+                                <strong>Diretor:</strong> {{ favorito.filme.diretorFilmeBD }}<br>
+                                <strong>Ano:</strong> {{ favorito.filme.anoFilmeBD }}<br>
+                                <strong>Gênero:</strong> {{ favorito.filme.generoFilmeBD }}
+                            </p>
+                            <button class="btn btn-danger btn-sm toggle-favorito" data-filme-id="{{ favorito.filme.id }}">
+                                Remover dos Favoritos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            Você ainda não tem filmes favoritos. 
+            <a href="{% url 'visuFilmesUserNomePath' %}" class="alert-link">Explore os filmes disponíveis</a> e adicione alguns aos seus favoritos!
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.toggle-favorito').forEach(button => {
+    button.addEventListener('click', function() {
+        const filmeId = this.dataset.filmeId;
+        fetch(`/toggle-favorito/${filmeId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'removed') {
+                this.closest('.col-md-4').remove();
+            }
+        });
+    });
+});
+</script>
+{% endblock %} 
