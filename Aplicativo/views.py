@@ -11,7 +11,7 @@ def homeAdmin(request):
 def homeUser(request):
     return render(request, 'homeUser.html')
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         nomeBD = request.POST.get('nome')
         senhaBD = request.POST.get('senha')
