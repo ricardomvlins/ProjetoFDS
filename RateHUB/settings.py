@@ -77,7 +77,11 @@ WSGI_APPLICATION = 'RateHUB.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(
+        default='postgres://u7o2f8a58nptai:pc32e13196d64f7468e5d76592a2b4d42969853f6319cf5d94392e0955954ed05@c97r84s7psuajm.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/dfs8tkf9n0gubr',
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
