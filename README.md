@@ -12,10 +12,9 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 <p style="text-align: center; text-decoration: none;"> Gustavo Pedrosa Miranda </p>
 <p style="text-align: center; text-decoration: none;"> Victor de Matos Vilela </p>
 
-<br><br>
+<br>
 
 </details>
-
 
 <details>
 
