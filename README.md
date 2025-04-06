@@ -1,12 +1,12 @@
-</details>
-
-
-<details>
-  
 # RateHUB
 Sistema de Avaliação de Filmes em Django.
 
 RateHUB é um software desenvolvido no framework Django, projetado para oferecer uma plataforma de avaliação e recomendação de filmes. O sistema permite que os usuários criem contas, avaliem conteúdos com notas de 1 a 5 estrelas, deixem comentários e recebam recomendações personalizadas com base em suas preferências. A interface é intuitiva e fácil de navegar, proporcionando uma experiência simples e eficiente para os usuários. Além disso, administradores têm a capacidade de cadastrar novos conteúdos e gerenciar comentários, garantindo um ambiente organizado e de qualidade para todos os participantes.
+
+</details>
+
+
+<details>
 
 <summary>Entrega 1</summary>
 
@@ -64,4 +64,21 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 <br>
 
+</details>
+
+
+<details>
+
 <summary>Entrega 2</summary>
+
+<br>
+
+### Relato da Programação em Par
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://docs.google.com/document/d/14w17ZBxP--UPO2CSFO2fqitYYlqqw0XzFb__opg94ps/edit?usp=sharing" style="text-decoration: none;">
+    <span>🔗 Relato da Programação em Par</span>
+  </a>
+</p>
+
+<br>
