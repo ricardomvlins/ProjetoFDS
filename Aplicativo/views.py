@@ -13,22 +13,26 @@ def homeUser(request):
 
 def login_view(request):
     if request.method == 'POST':
-        nomeBD = request.POST.get('nome')
-        senhaBD = request.POST.get('senha')
-        user = authenticate(request, username=nomeBD, password=senhaBD)
+        try:
+            nomeBD = request.POST.get('nome')
+            senhaBD = request.POST.get('senha')
+            user = authenticate(request, username=nomeBD, password=senhaBD)
 
-        if user is not None:
-            auth_login(request, user)
-            if user.is_superuser:
-                return redirect('homeAdmin')
+            if user is not None:
+                auth_login(request, user)
+                if user.is_superuser:
+                    return redirect('homeAdmin')
+                else:
+                    return redirect('homeUser')
             else:
-                return redirect('homeUser')
-        else:
-            mensagem = "Nome de usuário ou senha inválidos."
+                mensagem = "Nome de usuário ou senha inválidos."
+                return render(request, 'login.html', {'mensagem': mensagem, 'tipo_mensagem': 'error'})
+        except Exception as e:
+            print("Erro na view de login:", e)
+            mensagem = "Erro interno no servidor."
             return render(request, 'login.html', {'mensagem': mensagem, 'tipo_mensagem': 'error'})
 
     return render(request, 'login.html')
-
 def cadastro(request):
     if request.method == 'POST':
         nome = request.POST.get('nome')
