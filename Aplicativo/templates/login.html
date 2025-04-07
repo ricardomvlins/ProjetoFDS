@@ -45,7 +45,14 @@
         .mensagem {
             text-align: center;
             margin-bottom: 15px;
-            color: {% if tipo_mensagem == 'success' %}green{% else %}red{% endif %};
+        }
+
+        .mensagem-sucesso {
+            color: green;
+        }
+
+        .mensagem-erro {
+            color: red;
         }
 
         .link-cadastro {
@@ -77,7 +84,9 @@
         <h2>Login</h2>
 
         {% if mensagem %}
-            <div class="mensagem">{{ mensagem }}</div>
+            <div class="mensagem {% if tipo_mensagem == 'success' %}mensagem-sucesso{% else %}mensagem-erro{% endif %}">
+                {{ mensagem }}
+            </div>
         {% endif %}
 
         <form method="POST">

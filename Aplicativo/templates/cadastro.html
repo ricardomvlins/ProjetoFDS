@@ -45,7 +45,14 @@
         .mensagem {
             text-align: center;
             margin-bottom: 15px;
-            color: {% if tipo_mensagem == 'success' %}green{% else %}red{% endif %};
+        }
+
+        .mensagem-sucesso {
+            color: green;
+        }
+
+        .mensagem-erro {
+            color: red;
         }
 
         .login-link {
@@ -76,7 +83,15 @@
         <h2>Cadastro</h2>
 
         {% if mensagem %}
-            <div class="mensagem">{{ mensagem }}</div>
+            <div class="mensagem {% if tipo_mensagem == 'success' %}mensagem-sucesso{% else %}mensagem-erro{% endif %}">
+                <p>{{ mensagem }}</p>
+                {% if tipo_mensagem == 'success' %}
+                    <p>Você se cadastrou como <strong>{% if is_admin %}Administrador{% else %}Usuário{% endif %}</strong>.</p>
+                    <div class="login-link">
+                        <a href="{% url 'login_view' %}">Clique aqui para fazer login</a>
+                    </div>
+                {% endif %}
+            </div>
         {% endif %}
 
         <form method="POST">
@@ -90,25 +105,7 @@
             </label>
             <br><br>
             <input type="submit" value="Cadastrar">
-        </form>        
-
-        {% if tipo_mensagem == 'success' %}
-            <div class="mensagem sucesso">
-                <p>{{ mensagem }}</p>
-                {% if is_admin %}
-                    <p>Você se cadastrou como <strong>Administrador</strong>.</p>
-                {% else %}
-                    <p>Você se cadastrou como <strong>Usuário</strong>.</p>
-                {% endif %}
-                <div class="login-link">
-                    <a href="{% url 'login_view' %}">Clique aqui para fazer login</a>
-                </div>
-            </div>
-        {% elif tipo_mensagem == 'error' %}
-            <div class="mensagem erro">
-                <p>{{ mensagem }}</p>
-            </div>
-        {% endif %}
+        </form>
     </div>
 </body>
 </html>
