@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'RateHUB.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://GugaPedrosa:Smallow24@reatehubdb.postgres.database.azure.com:5432/ratehubdb',
+        default='postgres://GustavoPedrosa:Smallow24@reatehubdb.postgres.database.azure.com:5432/ratehubdb',
         conn_max_age=600,
         ssl_require=True
     )
