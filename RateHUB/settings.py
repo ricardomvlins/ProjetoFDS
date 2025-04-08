@@ -21,11 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gk-8uu9ci7nrqfs1cp+z(oi0wm8@wvc!4g$uf6p3a7c7s$8x7c'
+SECRET_KEY = 'd"p*3n$v-dqk1zg!l#vck3*q*59p+qvr3(^s^j0eet!2fi65hr_d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.herokuapp.com', 'ratehub-bef9c9chfpeadygd.brazilsouth-01.azurewebsites.net' , 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'RateHUB.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://u7o2f8a58nptai:pc32e13196d64f7468e5d76592a2b4d42969853f6319cf5d94392e0955954ed05@c97r84s7psuajm.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/dfs8tkf9n0gubr',
+        default='postgres://GugaPedrosa:Smallow24@reatehubdb.postgres.database.azure.com:5432/ratehubdb',
         conn_max_age=600,
         ssl_require=True
     )
