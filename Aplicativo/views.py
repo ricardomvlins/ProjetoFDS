@@ -41,6 +41,12 @@ def cadastro(request):
         confirmar_senha = request.POST.get('confirmarSenha')
         is_admin = request.POST.get('is_admin') == 'on' 
 
+        if not nome or not email or not senha or not confirmar_senha:
+            return render(request, 'cadastro.html', {
+                'mensagem': 'Todos os campos são obrigatórios.',
+                'tipo_mensagem': 'error'
+            })
+
         if senha != confirmar_senha:
             return render(request, 'cadastro.html', {
                 'mensagem': 'As senhas não coincidem.',
@@ -52,16 +58,23 @@ def cadastro(request):
                 'mensagem': 'Nome de usuário já está em uso.',
                 'tipo_mensagem': 'error'
             })
-
-        user = User.objects.create_user(
-            username=nome,
-            email=email,
-            password=senha,
-            is_superuser=is_admin,
-            is_staff=is_admin
-        )
-        user.save()
-
+        try:
+            user = User.objects.create_user(
+                username=nome,
+                email=email,
+                password=senha
+            )
+            if is_admin:
+                user.is_superuser = True
+                user.is_staff = True
+            user.save()
+        except Exception as e:
+            print(f"Erro ao criar usuário: {e}")
+            return render(request, 'cadastro.html', {
+                'mensagem': 'Erro ao criar usuário.',
+                'tipo_mensagem': 'error'
+            })
+        
         return render(request, 'cadastro.html', {
             'mensagem': 'Cadastro realizado com sucesso!',
             'tipo_mensagem': 'success'
