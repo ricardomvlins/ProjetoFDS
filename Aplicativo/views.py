@@ -120,7 +120,7 @@ def visuFilmeUser(request):
 
 def avaliacaoFilmeUser(request, filme_id):
     filme = get_object_or_404(Filmes, id=filme_id)
-    comentarios = Comentario.objects.filter(filme=filme).order_by('-id')  # Buscar os comentários do filme
+    comentarios = Comentario.objects.filter(filme=filme).order_by('-id')
 
     if request.method == 'POST':
         comentario = request.POST.get('comentario')
@@ -142,3 +142,12 @@ def visuFilmeAdmin(request):
     filmes = Filmes.objects.all()
 
     return render(request, 'visuFilmeAdmin.html', {'filmes': filmes})
+
+def visuComentarios(request, filme_id):
+    comentarios = Comentario.objects.all()
+    filme = get_object_or_404(Filmes, id=filme_id)
+
+    return render(request, 'visuComentarios.html', {
+        'filme': filme,
+        'comentarios': comentarios
+    })

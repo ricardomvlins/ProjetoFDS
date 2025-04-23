@@ -9,5 +9,6 @@ urlpatterns = [
     path('filmes/', views.filmes, name='filmes'),
     path('visuFilmeUser/', views.visuFilmeUser, name='visuFilmeUser'),
     path('visuFilmeAdmin/', views.visuFilmeAdmin, name='visuFilmeAdmin'),
-    path('filme/<int:filme_id>/avaliar/', views.avaliacaoFilmeUser, name='avaliacaoFilmeUser'),
+    path('filmes/<int:filme_id>/avaliar/', views.avaliacaoFilmeUser, name='avaliacaoFilmeUser'),
+    path('filmes/<int:filme_id>/visuComentarios/', views.visuComentarios, name='visuComentarios'),
 ]

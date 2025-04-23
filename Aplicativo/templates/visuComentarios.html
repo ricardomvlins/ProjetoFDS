@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ filme.titulo }} - Comentários</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        .comentario {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .comentario strong {
+            color: #333;
+        }
+
+        .comentario hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .no-comentarios {
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">RateHUB - Comentários</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>{{ filme.titulo }}</h2>
+        <p style="text-align: center;">{{ filme.descricao }}</p>
+
+        <h3>Comentários</h3>
+        {% for comentario in comentarios %}
+            <div class="comentario">
+                <strong>{{ comentario.usuario.username }}</strong>
+                <hr>
+                <p>{{ comentario.texto }}</p>
+            </div>
+        {% empty %}
+            <p class="no-comentarios">Sem comentários ainda.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
