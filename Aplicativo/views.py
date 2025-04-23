@@ -33,6 +33,7 @@ def login_view(request):
             return render(request, 'login.html', {'mensagem': mensagem, 'tipo_mensagem': 'error'})
 
     return render(request, 'login.html')
+
 def cadastro(request):
     if request.method == 'POST':
         nome = request.POST.get('nome')
