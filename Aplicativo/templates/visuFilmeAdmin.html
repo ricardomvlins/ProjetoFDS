@@ -82,7 +82,7 @@
                 <tbody>
                     {% for filme in filmes %}
                         <tr>
-                            <td><a href="{% url 'visuComentarios' filme.id %}">{{ filme.titulo }}</a></td>                         
+                            <td><a href="{% url 'visuComentariosAdmin' filme.id %}">{{ filme.titulo }}</a></td>                         
                             <td>{{ filme.diretor }}</td>
                             <td>{{ filme.ano }}</td>
                             <td>{{ filme.genero }}</td>

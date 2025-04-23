@@ -10,5 +10,6 @@ urlpatterns = [
     path('visuFilmeUser/', views.visuFilmeUser, name='visuFilmeUser'),
     path('visuFilmeAdmin/', views.visuFilmeAdmin, name='visuFilmeAdmin'),
     path('filmes/<int:filme_id>/avaliar/', views.avaliacaoFilmeUser, name='avaliacaoFilmeUser'),
-    path('filmes/<int:filme_id>/visuComentarios/', views.visuComentarios, name='visuComentarios'),
+    path('filmes/<int:filme_id>/visuComentarios/', views.visuComentariosAdmin, name='visuComentariosAdmin'),
+    path('comentario/<int:comentario_id>/deletarComentario', views.deletarComentarioAdmin, name='deletarComentarioAdmin')
 ]

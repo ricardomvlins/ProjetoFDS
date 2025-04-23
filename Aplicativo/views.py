@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Comentario, Filmes
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 
 def homeAdmin(request):
     return render(request, 'homeAdmin.html')
@@ -56,7 +56,7 @@ def cadastro(request):
 
         if User.objects.filter(username=nome).exists():
             return render(request, 'cadastro.html', {
-                'mensagem': 'Nome de usuário já está em uso.',
+                'mensagem': 'Nome já está em uso.',
                 'tipo_mensagem': 'error'
             })
         try:
@@ -143,7 +143,7 @@ def visuFilmeAdmin(request):
 
     return render(request, 'visuFilmeAdmin.html', {'filmes': filmes})
 
-def visuComentarios(request, filme_id):
+def visuComentariosAdmin(request, filme_id):
     comentarios = Comentario.objects.all()
     filme = get_object_or_404(Filmes, id=filme_id)
 
@@ -151,3 +151,9 @@ def visuComentarios(request, filme_id):
         'filme': filme,
         'comentarios': comentarios
     })
+
+@login_required
+def deletarComentarioAdmin(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    comentario.delete()
+    return redirect(request.META.get('HTTP_REFERER', 'visuComentariosAdmin'))

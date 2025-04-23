@@ -60,14 +60,21 @@
 
         <h3>Comentários</h3>
         {% for comentario in comentarios %}
-            <div class="comentario">
-                <strong>{{ comentario.usuario.username }}</strong>
-                <hr>
-                <p>{{ comentario.texto }}</p>
-            </div>
-        {% empty %}
-            <p class="no-comentarios">Sem comentários ainda.</p>
-        {% endfor %}
+    <div class="comentario">
+        <strong>{{ comentario.usuario.username }}</strong>
+        <hr>
+        <p>{{ comentario.texto }}</p>
+
+        {% if request.user.is_authenticated %}
+            <form method="POST" action="{% url 'deletarComentarioAdmin' comentario.id %}" style="text-align: right;">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-danger" type="submit">Deletar</button>
+            </form>
+        {% endif %}
+    </div>
+{% empty %}
+    <p class="no-comentarios">Sem comentários ainda.</p>
+{% endfor %}
     </div>
 </body>
 </html>
