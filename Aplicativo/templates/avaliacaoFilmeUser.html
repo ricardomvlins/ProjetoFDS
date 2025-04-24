@@ -121,6 +121,23 @@
             background-color: #007bff;
             color: white;
         }
+
+        .mensagens {
+            margin: 20px 0;
+          }
+          
+        .alert {
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-weight: none;
+        color: #fff;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            }
+        
+        .alert.success {
+        background-color: #4CAF50;
+            }
     
     </style>
 </head>
@@ -135,6 +152,16 @@
     <div class="container">
         <h2>{{ filme.titulo }}</h2>
         <p style="text-align: center;">{{ filme.descricao }}</p>
+
+        {% if messages %}
+            <div class="mensagens">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
         <h3>Deixe a sua opnião!</h3>
         <form method="POST">

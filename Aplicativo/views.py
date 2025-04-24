@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib import messages
 
 def homeAdmin(request):
     return render(request, 'homeAdmin.html')
@@ -144,11 +145,12 @@ def avaliacaoFilmeUser(request, filme_id):
             texto=comentario,
             nota=nota
         )
+        messages.success(request, "Filme avaliado com sucesso!")
         return redirect('avaliacaoFilmeUser', filme_id=filme.id)
 
     return render(request, 'avaliacaoFilmeUser.html', {
         'filme': filme,
-        'comentarios': comentarios 
+        'comentarios': comentarios,
     })
 
 @login_required
