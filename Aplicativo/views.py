@@ -177,3 +177,13 @@ def favoritarFilme(request, filme_id):
         favorito.delete()
     
     return redirect('visuFilmeUser')
+
+@login_required
+def verFavoritos(request):
+    favoritos = Favorito.objects.filter(usuario=request.user).select_related('filme')
+    filmes = [fav.filme for fav in favoritos]
+
+    return render(request, 'verFavoritos.html', {
+        'filmes': filmes
+    })
+
