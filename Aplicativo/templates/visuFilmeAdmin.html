@@ -106,9 +106,10 @@
                 <thead>
                     <tr>
                         <th>Título</th>
-                        <th>Diretor</th>
+                        <th>Diretor(a)</th>
                         <th>Ano</th>
                         <th>Gênero</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -118,9 +119,12 @@
                             <td>{{ filme.titulo }}</td>  
                             <td>{{ filme.diretor }}</td>
                             <td>{{ filme.ano }}</td>
-                            <td>{{ filme.genero }}</td>
+                            <td>{{ filme.get_genero_display }}</td>
                             <td>
                                 <a href="{% url 'visuComentariosAdmin' filme.id %}" class="btn-comentarios">Ver comentários</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'verMaisFilmeAdmin' filme.id %}" class="btn-comentarios">Mais informações</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 def homeAdmin(request):
     return render(request, 'homeAdmin.html')
@@ -91,8 +92,10 @@ def filmes(request):
         diretor = request.POST.get('diretor', '').strip()
         ano = request.POST.get('ano', '').strip()
         genero = request.POST.get('genero', '').strip()
+        tipo = request.POST.get('tipo', '').strip()
+        sinopse = request.POST.get('sinopse','').strip()
 
-        if not titulo or not diretor or not ano or not genero:
+        if not titulo or not diretor or not ano or not genero or not tipo or not sinopse:
             mensagem = "Todos os campos são obrigatórios!"
             return render(request, 'adcFilmeAdmin.html', {'mensagem': mensagem, 'tipo_mensagem': 'error'})
 
@@ -107,6 +110,8 @@ def filmes(request):
             diretor=diretor,
             ano=ano,
             genero=genero,
+            tipo=tipo,
+            sinopse=sinopse,
         )
         novo_filme.save()
 
@@ -187,3 +192,17 @@ def verFavoritos(request):
         'filmes': filmes
     })
 
+@login_required
+def sair(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
+def verMaisFilmeAdmin(request, filme_id):
+    filme = get_object_or_404(Filmes, id=filme_id)
+    return render(request, 'verMaisFilmeAdmin.html', {'filme': filme})
+
+@login_required
+def verMaisFilmeUser(request, filme_id):
+    filme = get_object_or_404(Filmes, id=filme_id)
+    return render(request, 'verMaisFilmeUser.html', {'filme': filme})

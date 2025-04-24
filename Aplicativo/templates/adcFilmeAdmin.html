@@ -32,6 +32,14 @@
             border: 1px solid #ccc;
         }
 
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
         input[type="submit"] {
             background-color: #00a0e4;
             color: white;
@@ -95,7 +103,29 @@
             <input type="text" name="titulo" placeholder="Título do Filme">
             <input type="text" name="diretor" placeholder="Diretor">
             <input type="number" name="ano" placeholder="Ano de Lançamento">
-            <input type="text" name="genero" placeholder="Gênero">
+            <select name="genero" required>
+                <option value="">Gênero</option>
+                <option value="acao">Ação</option>
+                <option value="terror">Terror</option>
+                <option value="comedia">Comédia</option>
+                <option value="ficcao-cientifica">Ficção Científica</option>
+                <option value="romance">Romance</option>
+                <option value="heroi">Herói</option>
+                <option value="suspense">Suspense</option>
+                <option value="drama">Drama</option>
+                <option value="aventura">Aventura</option>
+                <option value="historia">História</option>
+                <option value="documentario">Documentário</option>
+                <option value="guerra">Guerra</option>
+                <option value="fantasia">Fantasia</option>
+                <option value="biografia">Biografia</option>
+                <option value="esporte">Esporte</option>
+            </select>
+            <select name="tipo" required>
+                <option value="live-action">Live Action</option>
+                <option value="animacao">Animação</option>
+            </select>
+            <input type="text" name="sinopse" placeholder="Sinopse">
             <input type="submit" value="Cadastrar Filme">
             <button type="button" class="btn1" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
             <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeAdmin' %}'">Ir para o Catálogo</button>

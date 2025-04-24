@@ -10,10 +10,35 @@ class Cadastro(models.Model):
         return self.nome
 
 class Filmes(models.Model):
+    GENERO_CHOICES = [
+        ('acao', 'Ação'),
+        ('terror', 'Terror'),
+        ('comedia', 'Comédia'),
+        ('ficcao-cientifica', 'Ficção Científica'),
+        ('romance', 'Romance'),
+        ('heroi', 'Herói'),
+        ('suspense', 'Suspense'),
+        ('drama', 'Drama'),
+        ('aventura', 'Aventura'),
+        ('historia', 'História'),
+        ('documentario', 'Documentário'),
+        ('guerra', 'Guerra'),
+        ('fantasia', 'Fantasia'),
+        ('biografia', 'Biografia'),
+        ('esporte', 'Esporte'),
+    ]
+
+    TIPO_CHOICES = [
+        ('live-action', 'Live Action'),
+        ('animacao', 'Animação'),
+    ]
+
     titulo = models.CharField(max_length=100, default='Título não informado')
     diretor = models.CharField(max_length=100, default='Diretor não informado')
     ano = models.IntegerField(default=1900)
-    genero = models.CharField(max_length=50, default='Gênero não informado')
+    genero = models.CharField(max_length=50, choices=GENERO_CHOICES)
+    tipo = models.CharField(max_length=50, choices=TIPO_CHOICES)
+    sinopse = models.TextField(default='Sinopse não informada.')
 
     def __str__(self):
         return self.titulo
