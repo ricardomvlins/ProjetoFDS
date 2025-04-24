@@ -44,6 +44,24 @@
             text-align: center;
             color: #777;
         }
+
+        .btn1 {
+            background-color: #00a0e4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn1:hover {
+            background-color: #007bff;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -72,9 +90,12 @@
             </form>
         {% endif %}
     </div>
-{% empty %}
-    <p class="no-comentarios">Sem comentários ainda.</p>
-{% endfor %}
+        {% empty %}
+            <p class="no-comentarios">Sem comentários ainda.</p>
+        {% endfor %}
+
+        <button class="btn1" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
+        <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeAdmin' %}'">Voltar ao Catálogo</button>
     </div>
 </body>
 </html>

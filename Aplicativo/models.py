@@ -14,7 +14,6 @@ class Filmes(models.Model):
     diretor = models.CharField(max_length=100, default='Diretor não informado')
     ano = models.IntegerField(default=1900)
     genero = models.CharField(max_length=50, default='Gênero não informado')
-    favoritado_por = models.ManyToManyField(User, related_name='favoritos', blank=True)
 
     def __str__(self):
         return self.titulo
@@ -32,11 +31,11 @@ class Comentario(models.Model):
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     filme = models.ForeignKey(Filmes, on_delete=models.CASCADE)
-    favorito = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('usuario', 'filme')
+        unique_together = ('usuario', 'filme')  # Evita duplicação de favoritos
 
     def __str__(self):
-        return f"{self.usuario.username} ❤️ {self.filme.titulo}" 
+        return f"{self.usuario.username} favoritou {self.filme.titulo}"
+
     

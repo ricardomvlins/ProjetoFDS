@@ -41,10 +41,21 @@
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
+            background-color: #00a0e4;
             color: white;
             border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        input:hover {
+            background-color: #007bff;
+            color: white;
         }
 
         .comentario {
@@ -74,6 +85,43 @@
             font-size: 18px;
             margin-bottom: 5px;
         }
+
+        .btn {
+            background-color: #00a0e4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn1 {
+            background-color: #00a0e4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 40px
+        }
+
+        .btn1:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    
     </style>
 </head>
 <body class="bg-light">
@@ -103,6 +151,8 @@
             </select>
 
             <input type="submit" value="Enviar">
+            <button type="button" class="btn" onclick="location.href='{% url 'homeUser' %}'">Voltar a Home</button>
+            <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeUser' %}'">Voltar ao Catálogo</button>
         </form>
 
         <h3>Comentários</h3>

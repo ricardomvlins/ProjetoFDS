@@ -144,7 +144,7 @@ def visuFilmeAdmin(request):
     return render(request, 'visuFilmeAdmin.html', {'filmes': filmes})
 
 def visuComentariosAdmin(request, filme_id):
-    comentarios = Comentario.objects.all()
+    comentarios = Comentario.objects.filter(filme_id=filme_id)
     filme = get_object_or_404(Filmes, id=filme_id)
 
     return render(request, 'visuComentarios.html', {
@@ -159,19 +159,10 @@ def deletarComentarioAdmin(request, comentario_id):
     return redirect(request.META.get('HTTP_REFERER', 'visuComentariosAdmin'))
 
 def favoritarFilme(request, filme_id):
-    try:
-        filme = Filmes.objects.get(id=filme_id)
-        if request.user.is_authenticated:
-            if filme.favoritado_por.filter(id=request.user.id).exists():
-                filme.favoritado_por.remove(request.user)
-            else:
-                filme.favoritado_por.add(request.user)
-            filme.save()
-
-            return redirect('visuFilmeUser') 
-
-        else:
-            return redirect('login') 
-
-    except Filmes.DoesNotExist:
-        return render(request, 'meu_app/erro.html', {'message': 'Filme não encontrado'})
+    filme = get_object_or_404(Filmes, id=filme_id)
+    favorito, criado = Favorito.objects.get_or_create(usuario=request.user, filme=filme)
+    
+    if not criado:
+        favorito.delete()
+    
+    return redirect('visuFilmeUser', filme_id=filme.id)

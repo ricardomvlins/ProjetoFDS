@@ -56,6 +56,38 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .btn-comentarios {
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            color: #00a0e4;
+            cursor: pointer;
+            text-decoration: none;
+          }
+      
+          .btn-comentarios:hover {
+            text-decoration: underline;
+          }
+
+          .btn {
+            background-color: #00a0e4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+          }
+      
+          .btn:hover {
+            background-color: #007bbd;
+            color: white;
+          }
+
     </style>
 </head>
 <body class="bg-light">
@@ -77,15 +109,19 @@
                         <th>Diretor</th>
                         <th>Ano</th>
                         <th>Gênero</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for filme in filmes %}
                         <tr>
-                            <td><a href="{% url 'visuComentariosAdmin' filme.id %}">{{ filme.titulo }}</a></td>                         
+                            <td>{{ filme.titulo }}</td>  
                             <td>{{ filme.diretor }}</td>
                             <td>{{ filme.ano }}</td>
                             <td>{{ filme.genero }}</td>
+                            <td>
+                                <a href="{% url 'visuComentariosAdmin' filme.id %}" class="btn-comentarios">Ver comentários</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -93,6 +129,8 @@
         {% else %}
             <p style="text-align: center;">Nenhum filme cadastrado ainda.</p>
         {% endif %}
+
+        <button type="button" class="btn" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
     </div>
 </body>
 </html>

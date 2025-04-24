@@ -33,19 +33,45 @@
         }
 
         input[type="submit"] {
-            width: 100%;
-            background-color: #4CAF50;
+            background-color: #00a0e4;
             color: white;
-            padding: 10px;
             border: none;
-            border-radius: 8px;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #007bff;
+            color: white;
         }
 
         .mensagem {
             text-align: center;
             margin-bottom: 15px;
             color: {% if tipo_mensagem == 'success' %}green{% else %}red{% endif %};
+        }
+
+        .btn1 {
+            background-color: #00a0e4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn1:hover {
+            background-color: #007bff;
+            color: white;
         }
     </style>
 </head>
@@ -71,6 +97,8 @@
             <input type="number" name="ano" placeholder="Ano de Lançamento">
             <input type="text" name="genero" placeholder="Gênero">
             <input type="submit" value="Cadastrar Filme">
+            <button type="button" class="btn1" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
+            <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeAdmin' %}'">Ir para o Catálogo</button>
         </form>
     </div>
 </body>
