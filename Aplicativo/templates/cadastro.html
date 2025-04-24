@@ -69,6 +69,22 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+
+        .link-login1 {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .link-login1 a {
+            color: #00a0e4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link-login1 a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -88,7 +104,7 @@
                 {% if tipo_mensagem == 'success' %}
                     <p>Você se cadastrou como <strong>{% if is_admin %}Administrador{% else %}Usuário{% endif %}</strong>.</p>
                     <div class="login-link">
-                        <a href="{% url 'login_view' %}">Clique aqui para fazer login</a>
+                        <a href="{% url 'login' %}">Clique aqui para fazer login</a>
                     </div>
                 {% endif %}
             </div>
@@ -106,6 +122,10 @@
             <br><br>
             <input type="submit" value="Cadastrar">
         </form>
+
+        <div class="link-login1">
+            <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login aqui</a></p>
+        </div>
     </div>
 </body>
 </html>

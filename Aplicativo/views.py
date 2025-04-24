@@ -73,16 +73,18 @@ def cadastro(request):
             print(f"Erro ao criar usuário: {e}")
             return render(request, 'cadastro.html', {
                 'mensagem': 'Erro ao criar usuário.',
-                'tipo_mensagem': 'error'
+                'tipo_mensagem': 'error',
             })
         
         return render(request, 'cadastro.html', {
             'mensagem': 'Cadastro realizado com sucesso!',
-            'tipo_mensagem': 'success'
+            'tipo_mensagem': 'success',
+            'is_admin': is_admin,
         })
 
     return render(request, 'cadastro.html')
 
+@login_required
 def filmes(request):
     if request.method == 'POST':
         titulo = request.POST.get('titulo', '').strip()
@@ -113,11 +115,17 @@ def filmes(request):
 
     return render(request, 'adcFilmeAdmin.html')
 
+@login_required
 def visuFilmeUser(request):
     filmes = Filmes.objects.all()
+    favoritos = Favorito.objects.filter(usuario=request.user).values_list('filme_id', flat=True)
 
-    return render(request, 'visuFilmeUser.html', {'filmes': filmes})
+    return render(request, 'visuFilmeUser.html', {
+        'filmes': filmes,
+        'ids_filmes_favoritos': list(favoritos)
+    })
 
+@login_required
 def avaliacaoFilmeUser(request, filme_id):
     filme = get_object_or_404(Filmes, id=filme_id)
     comentarios = Comentario.objects.filter(filme=filme).order_by('-id')
@@ -138,11 +146,13 @@ def avaliacaoFilmeUser(request, filme_id):
         'comentarios': comentarios 
     })
 
+@login_required
 def visuFilmeAdmin(request):
     filmes = Filmes.objects.all()
 
     return render(request, 'visuFilmeAdmin.html', {'filmes': filmes})
 
+@login_required
 def visuComentariosAdmin(request, filme_id):
     comentarios = Comentario.objects.filter(filme_id=filme_id)
     filme = get_object_or_404(Filmes, id=filme_id)
@@ -158,6 +168,7 @@ def deletarComentarioAdmin(request, comentario_id):
     comentario.delete()
     return redirect(request.META.get('HTTP_REFERER', 'visuComentariosAdmin'))
 
+@login_required
 def favoritarFilme(request, filme_id):
     filme = get_object_or_404(Filmes, id=filme_id)
     favorito, criado = Favorito.objects.get_or_create(usuario=request.user, filme=filme)
@@ -165,4 +176,4 @@ def favoritarFilme(request, filme_id):
     if not criado:
         favorito.delete()
     
-    return redirect('visuFilmeUser', filme_id=filme.id)
+    return redirect('visuFilmeUser')

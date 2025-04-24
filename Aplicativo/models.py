@@ -22,7 +22,7 @@ class Comentario(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     filme = models.ForeignKey(Filmes, on_delete=models.CASCADE)
     texto = models.TextField()
-    nota = models.IntegerField(choices=[(i, str(i)) for i in range(6)])  # 0 a 5 estrelas
+    nota = models.IntegerField(choices=[(i, str(i)) for i in range(6)])  
     data = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -31,9 +31,10 @@ class Comentario(models.Model):
 class Favorito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     filme = models.ForeignKey(Filmes, on_delete=models.CASCADE)
+    data = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('usuario', 'filme')  # Evita duplicação de favoritos
+        unique_together = ('usuario', 'filme') 
 
     def __str__(self):
         return f"{self.usuario.username} favoritou {self.filme.titulo}"

@@ -122,7 +122,11 @@
                             <td>
                                 <form action="{% url 'favoritarFilme' filme.id %}" method="POST">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn-favoritar">Favoritar</button>
+                                    {% if filme.id in ids_filmes_favoritos %}
+                                        <button type="submit" class="btn-favoritar">Desfavoritar</button>
+                                    {% else %}
+                                        <button type="submit" class="btn-favoritar">Favoritar</button>
+                                    {% endif %}
                                 </form>
                             </td>
                             <td>
