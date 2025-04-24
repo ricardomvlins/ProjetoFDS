@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Comentario, Filmes
+from .models import Comentario, Filmes, Favorito
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
@@ -157,3 +157,21 @@ def deletarComentarioAdmin(request, comentario_id):
     comentario = get_object_or_404(Comentario, id=comentario_id)
     comentario.delete()
     return redirect(request.META.get('HTTP_REFERER', 'visuComentariosAdmin'))
+
+def favoritarFilme(request, filme_id):
+    try:
+        filme = Filmes.objects.get(id=filme_id)
+        if request.user.is_authenticated:
+            if filme.favoritado_por.filter(id=request.user.id).exists():
+                filme.favoritado_por.remove(request.user)
+            else:
+                filme.favoritado_por.add(request.user)
+            filme.save()
+
+            return redirect('visuFilmeUser') 
+
+        else:
+            return redirect('login') 
+
+    except Filmes.DoesNotExist:
+        return render(request, 'meu_app/erro.html', {'message': 'Filme não encontrado'})
