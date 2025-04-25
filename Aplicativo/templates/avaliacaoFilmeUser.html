@@ -121,23 +121,24 @@
             background-color: #007bff;
             color: white;
         }
-
-        .mensagens {
-            margin: 20px 0;
-          }
           
-        .alert {
-        padding: 15px 20px;
-        border-radius: 8px;
-        font-weight: none;
-        color: #fff;
-        margin-bottom: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            }
+        .mensagem {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
         
-        .alert.success {
-        background-color: #4CAF50;
-            }
+        .mensagem-sucesso {
+            background-color: #4CAF50;
+        }
+        
+        .mensagem-erro {
+            background-color: #f44336; 
+        }
     
     </style>
 </head>
@@ -153,13 +154,9 @@
         <h2>{{ filme.titulo }}</h2>
         <p style="text-align: center;">{{ filme.descricao }}</p>
 
-        {% if messages %}
-            <div class="mensagens">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+        {% if mensagem %}
+            <div class="mensagem {% if tipo_mensagem == 'success' %}mensagem-sucesso{% else %}mensagem-erro{% endif %}">
+                <p>{{ mensagem }}</p>
             </div>
         {% endif %}
 

@@ -145,12 +145,16 @@ def avaliacaoFilmeUser(request, filme_id):
             texto=comentario,
             nota=nota
         )
-        messages.success(request, "Filme avaliado com sucesso!")
-        return redirect('avaliacaoFilmeUser', filme_id=filme.id)
+        return render(request, 'avaliacaoFilmeUser.html', {
+            'filme': filme,
+            'comentarios': comentarios,
+            'mensagem': 'Filme foi avaliado com sucesso!',
+            'tipo_mensagem': 'success',
+        })
 
     return render(request, 'avaliacaoFilmeUser.html', {
         'filme': filme,
-        'comentarios': comentarios,
+        'comentarios': comentarios
     })
 
 @login_required
