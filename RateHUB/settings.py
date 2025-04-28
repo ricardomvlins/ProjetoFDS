@@ -82,10 +82,10 @@ if 'DBHOST' in os.environ:  # Se estiver no Azure
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['DBNAME'],
-            'USER': os.environ['DBUSER'],
-            'PASSWORD': os.environ['DBPASS'],
-            'HOST': os.environ['DBHOST'],
+            'NAME': 'ratehubappdb',
+            'USER': 'GustavoPedrosa@ratehubappdb',
+            'PASSWORD': 'Smallow24',
+            'HOST': 'ratehubappdb.postgres.database.azure.com',
             'PORT': '5432',
             'OPTIONS': {
                 'sslmode': 'require'
