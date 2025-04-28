@@ -77,12 +77,28 @@ WSGI_APPLICATION = 'RateHUB.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Configuração do Banco de Dados
+if 'DBHOST' in os.environ:  # Se estiver no Azure
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['DBNAME'],
+            'USER': os.environ['DBUSER'],
+            'PASSWORD': os.environ['DBPASS'],
+            'HOST': os.environ['DBHOST'],
+            'PORT': '5432',
+            'OPTIONS': {
+                'sslmode': 'require'
+            }
+        }
     }
-}
+else:  # Para desenvolvimento local
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
