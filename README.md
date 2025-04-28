@@ -140,4 +140,8 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 <br>
 
+### Jira Quadro Sprint 2
+
+<br>
+
 </details>
