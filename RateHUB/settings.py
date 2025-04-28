@@ -88,8 +88,7 @@ if 'DBHOST' in os.environ:  # Se estiver no Azure
         'HOST': os.environ.get('DBHOST', 'ratehubappdb.postgres.database.azure.com'),
         'PORT': '5432',
         'OPTIONS': {
-            'sslmode': 'require',
-            'sslrootcert': os.path.join(BASE_DIR, 'BaltimoreCyberTrustRoot.crt.pem')
+            'sslmode': 'require'  # Apenas isso é necessário no Azure
         }
     }
 }
