@@ -80,18 +80,19 @@ WSGI_APPLICATION = 'RateHUB.wsgi.application'
 # Configuração do Banco de Dados
 if 'DBHOST' in os.environ:  # Se estiver no Azure
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'ratehubappdb',
-            'USER': 'GustavoPedrosa@ratehubappdb',
-            'PASSWORD': 'Smallow24',
-            'HOST': 'ratehubappdb.postgres.database.azure.com',
-            'PORT': '5432',
-            'OPTIONS': {
-                'sslmode': 'require'
-            }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DBNAME', 'ratehubappdb'),
+        'USER': os.environ.get('DBUSER', 'GustavoPedrosa@ratehubappdb'),
+        'PASSWORD': os.environ.get('DBPASS', 'Smallow24'),
+        'HOST': os.environ.get('DBHOST', 'ratehubappdb.postgres.database.azure.com'),
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+            'sslrootcert': os.path.join(BASE_DIR, 'BaltimoreCyberTrustRoot.crt.pem')
         }
     }
+}
 else:  # Para desenvolvimento local
     DATABASES = {
         'default': {
