@@ -21,4 +21,4 @@ db.sqlite3
 media/
 
 # Arquivos NODE
-node_modules/
+node_modules/ 
