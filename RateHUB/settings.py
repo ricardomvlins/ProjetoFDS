@@ -40,7 +40,7 @@ if NOT_PROD:
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
-    ALLOWED_HOSTS = ['.herokuapp.com', 'ratehubapp-bmhdf2fdewcdega4.brazilsouth-01.azurewebsites.net' , 'localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['.herokuapp.com', 'appratehub-eqc8d2hugvhhhxcc.brazilsouth-01.azurewebsites.net' , 'localhost', '127.0.0.1']
     CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
 
     SECURE_SSL_REDIRECT = \
