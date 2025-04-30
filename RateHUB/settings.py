@@ -40,7 +40,7 @@ if NOT_PROD:
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
     DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
-    ALLOWED_HOSTS = ['.herokuapp.com', 'appratehub-eqc8d2hugvhhhxcc.brazilsouth-01.azurewebsites.net' , 'localhost', '127.0.0.1']
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
     CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
 
     SECURE_SSL_REDIRECT = \
@@ -65,7 +65,6 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,7 +76,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -171,8 +169,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 LOGGING = {
     'version': 1,
