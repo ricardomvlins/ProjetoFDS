@@ -209,6 +209,12 @@ def verMaisFilmeAdmin(request, filme_id):
     return render(request, 'verMaisFilmeAdmin.html', {'filme': filme})
 
 @login_required
+def deletarFilmeAdmin(request, filme_id):
+    filme = get_object_or_404(Filmes, id=filme_id)
+    filme.delete()
+    return redirect(request.META.get('HTTP_REFERER', 'visuFilmeAdmin'))
+
+@login_required
 def verMaisFilmeUser(request, filme_id):
     filme = get_object_or_404(Filmes, id=filme_id)
     return render(request, 'verMaisFilmeUser.html', {'filme': filme})
