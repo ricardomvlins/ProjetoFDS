@@ -29,7 +29,7 @@ if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = '<A SECRET KEY DO SEU PROJETO>'
+    SECRET_KEY = 'rjeh(^f1)t8i+s-%^5k2a5xx%4ntit=tjto9bszq)*yfd+!$mj'
     ALLOWED_HOSTS = []
     DATABASES = {
         'default': {
