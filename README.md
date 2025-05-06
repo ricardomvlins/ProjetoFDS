@@ -1,3 +1,5 @@
+<img src="https://github.com/user-attachments/assets/32560331-0fc2-4d2a-82b9-17edaa6423eb" alt="logo_RateHUB" width="400" style="margin-right: 10px;">
+
 # RateHUB
 Sistema de Avaliação de Filmes em Django.
 
