@@ -44,7 +44,7 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 <br>
 
-###  Screencast do Protótipo
+###  Screencast do Protótipo no Figma
 
 <p style="text-align: center; text-decoration: none;">
   <a href="https://youtu.be/oxTLIv9bLuc" style="text-decoration: none;">
@@ -121,3 +121,69 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 <br>
 
+</details>
+
+
+<details>
+
+<summary>Entrega 3</summary>
+
+<br>
+
+###  Screencast do Protótipo no Figma
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/oxTLIv9bLuc" style="text-decoration: none;">
+    <span>🔗 Screencast Figma </span>
+  </a>
+</p>
+
+<br>
+
+###  Screencast dos Testes Automatizados
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/Ky1d9fPZvk8" style="text-decoration: none;">
+    <span>🔗 Screencast Testes Automatizados </span>
+  </a>
+</p>
+
+<br>
+
+###  Screencast do Uso na Azure
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/cqix__R0HBs" style="text-decoration: none;">
+    <span>🔗 Screencast Azure </span>
+  </a>
+</p>
+
+<br>
+
+### Jira Quadro Sprint 2
+
+![Captura de tela 2025-04-30 221342](https://github.com/user-attachments/assets/d4945101-ec6b-4616-a7e0-5df8e0ac0cb8)
+
+<br>
+
+![Captura de tela 2025-04-30 223243](https://github.com/user-attachments/assets/491071fe-6ddf-404d-a42a-03e55675f7ba)
+
+<br>
+
+### Relato da Programação em Par Atualizado
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://docs.google.com/document/d/14w17ZBxP--UPO2CSFO2fqitYYlqqw0XzFb__opg94ps/edit?usp=sharing" style="text-decoration: none;">
+    <span>🔗 Relato da Programação em Par Atualizado </span> 
+  </a>
+</p>
+
+<br>
+
+### Issue/bug tracker
+
+![Captura de tela 2025-04-30 224340](https://github.com/user-attachments/assets/1049f8bd-e049-434b-b990-7e2163cbaf0a)
+
+<br>
+
+</details>
