@@ -56,7 +56,6 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 20px;
-            margin-bottom: 20px;
         }
 
         .btn1:hover {
@@ -104,7 +103,7 @@
         {% endfor %}
 
         <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeAdmin' %}'">Voltar ao Catálogo</button>
-        <button class="btn1" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
+        <button type="button" class="btn1" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
     </div>
 </body>
 </html>

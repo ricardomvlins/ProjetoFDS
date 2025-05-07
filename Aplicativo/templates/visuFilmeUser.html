@@ -94,6 +94,19 @@
             width: 150px;
             height: auto;
         }
+
+        .container2 {
+            width: 100%%;
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
         
     </style>
 </head>
@@ -111,46 +124,30 @@
         <h2>Filmes Cadastrados</h2>
 
         {% if filmes %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Diretor(a)</th>
-                        <th>Ano</th>
-                        <th>Gênero</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for filme in filmes %}
-                        <tr>
-                            <td>{{ filme.titulo }}</td>                            
-                            <td>{{ filme.diretor }}</td>
-                            <td>{{ filme.ano }}</td>
-                            <td>{{ filme.get_genero_display }}</td>
-                            <td>
-                                <form action="{% url 'favoritarFilme' filme.id %}" method="POST">
-                                    {% csrf_token %}
-                                    {% if filme.id in ids_filmes_favoritos %}
-                                        <button type="submit" class="btn-favoritar">Desfavoritar</button>
-                                    {% else %}
-                                        <button type="submit" class="btn-favoritar">Favoritar</button>
-                                    {% endif %}
-                                </form>
-                            </td>
-                            <td>
-                                <a href="{% url 'avaliacaoFilmeUser' filme.id %}" class="btn-favoritar">Avaliar</a>
-                            </td>
-
-                            <td>
-                                <a href="{% url 'verMaisFilmeUser' filme.id %}" class="btn-favoritar">Mais informações</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% for filme in filmes %}
+                <div class="container2">
+                    <p><span class="info-label">Título:</span> {{ filme.titulo }}</p>
+                    <p><span class="info-label">Diretor(a):</span> {{ filme.diretor }}</p>
+                    <p><span class="info-label">Ano de Lançamento:</span> {{ filme.ano }}</p>
+                    <p><span class="info-label">Gênero:</span> {{ filme.get_genero_display }}</p>
+                    <p>
+                        <form action="{% url 'favoritarFilme' filme.id %}" method="POST">
+                            {% csrf_token %}
+                            {% if filme.id in ids_filmes_favoritos %}
+                                <button type="submit" class="btn-favoritar">Desfavoritar</button>
+                            {% else %}
+                                <button type="submit" class="btn-favoritar">Favoritar</button>
+                            {% endif %}
+                        </form>
+                    </p>
+                    <p>
+                        <a href="{% url 'avaliacaoFilmeUser' filme.id %}" class="btn-favoritar">Avaliar</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'verMaisFilmeUser' filme.id %}" class="btn-favoritar">Mais informações</a>
+                    </p>
+                </div>
+            {% endfor %}       
         {% else %}
             <p style="text-align: center;">Nenhum filme cadastrado ainda.</p>
         {% endif %}

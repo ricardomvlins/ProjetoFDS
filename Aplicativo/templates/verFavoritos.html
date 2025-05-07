@@ -94,6 +94,19 @@
             width: 150px;
             height: auto;
         }
+
+        .container2 {
+            width: 100%%;
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
         
     </style>
 </head>
@@ -108,29 +121,17 @@
     </nav>
 
     <div class="container">
-        <h2>Meus Filmes Favoritos</h2>
+        <h2>Meus Favoritos</h2>
 
         {% if filmes %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Diretor</th>
-                        <th>Ano</th>
-                        <th>Gênero</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for filme in filmes %}
-                        <tr>
-                            <td>{{ filme.titulo }}</td>
-                            <td>{{ filme.diretor }}</td>
-                            <td>{{ filme.ano }}</td>
-                            <td>{{ filme.genero }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% for filme in filmes %}
+                <div class="container2">
+                    <p><span class="info-label">Título:</span> {{ filme.titulo }}</p>
+                    <p><span class="info-label">Diretor(a):</span> {{ filme.diretor }}</p>
+                    <p><span class="info-label">Ano de Lançamento:</span> {{ filme.ano }}</p>
+                    <p><span class="info-label">Gênero:</span> {{ filme.get_genero_display }}</p>
+                </div>
+            {% endfor %}       
         {% else %}
             <p style="text-align: center;">Você ainda não favoritou nenhum filme.</p>
         {% endif %}
