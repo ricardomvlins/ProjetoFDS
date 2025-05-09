@@ -31,7 +31,7 @@ class Filmes(models.Model):
     TIPO_CHOICES = [
         ('live-action', 'Live Action'),
         ('animacao', 'Animação'),
-    ]
+    ]   
 
     titulo = models.CharField(max_length=100, default='Título não informado')
     diretor = models.CharField(max_length=100, default='Diretor não informado')

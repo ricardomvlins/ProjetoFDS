@@ -218,3 +218,23 @@ def deletarFilmeAdmin(request, filme_id):
 def verMaisFilmeUser(request, filme_id):
     filme = get_object_or_404(Filmes, id=filme_id)
     return render(request, 'verMaisFilmeUser.html', {'filme': filme})
+
+def recomendarFilmesPorGenero(usuario):
+    generos_favoritados = Filmes.objects.filter(
+        favorito__usuario=usuario
+    ).values_list('genero', flat=True).distinct()
+
+    filmes_recomendados = Filmes.objects.filter(
+        genero__in=generos_favoritados
+    ).exclude(
+        favorito__usuario=usuario
+    ).distinct()
+
+    return filmes_recomendados
+
+@login_required
+def recomendacoes(request):
+    usuario = request.user
+
+    recomendacoes = recomendarFilmesPorGenero(usuario)
+    return render(request, 'verRecomendacoes.html', {'filmes': recomendacoes})
