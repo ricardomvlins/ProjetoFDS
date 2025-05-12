@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - ratehubapp
 on:
   push:
     branches:
-      - main
+      - prod
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Create and start virtual environment
         run: |
@@ -34,6 +34,10 @@ jobs:
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
+      - name: Cleaning testing files
+        run: |
+          rm .env
+          
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -68,9 +72,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4038A7F2F7D64739B0167423174AA5E6 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_409DE3FC79094283BA6A3323B2758C6F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_ED6CEB276DE94410B2AD33450B56FE9B }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B831F4B04D6E4D53948F159998EA65DF }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4918758DBE1048B395430F4382E09F21 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_17560AE3989A40869E8B99C00B585969 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3

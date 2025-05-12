@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -96,7 +97,6 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 20px;
-            margin-bottom: 20px;
         }
 
         .btn:hover {
@@ -139,14 +139,23 @@
         .mensagem-erro {
             background-color: #f44336; 
         }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
     
     </style>
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">RateHUB - Avaliação</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-5">
+                <div class="logo">
+                    <img src="{% static '/imagens/logo_RateHUB.png' %}" alt="RateHUB Logo">
+                </div>
+            </div>
         </div>
     </nav>
 

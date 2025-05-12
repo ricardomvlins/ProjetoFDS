@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -67,34 +68,84 @@
             text-decoration: none;
           }
       
-          .btn-comentarios:hover {
-            text-decoration: underline;
-          }
+        .btn-comentarios:hover {
+        text-decoration: underline;
+        }
 
-          .btn {
-            background-color: #00a0e4;
-            color: white;
+        .btn {
+        background-color: #00a0e4;
+        color: white;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 20px;
+        }
+    
+        .btn:hover {
+        background-color: #007bbd;
+        color: white;
+        }
+
+        .btn1 {
+            background: none;
             border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 5px;
+            padding: 0;
+            font: inherit;
+            color: red;
             cursor: pointer;
-            font-weight: bold;
-            margin-top: 20px;
+            text-decoration: none;
           }
       
-          .btn:hover {
-            background-color: #007bbd;
-            color: white;
-          }
+        .btn1:hover {
+        text-decoration: underline;
+        }
 
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .container2 {
+            width: 100%%;
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
+
+        .btndelete {
+            background-color: #dc3545; /* vermelho Bootstrap */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btndelete:hover {
+            background-color: #bb2d3b; /* vermelho mais escuro no hover */
+            color: white;
+        }
+        
     </style>
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">RateHUB - Catálogo</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="{% static '/imagens/logo_RateHUB.png' %}" alt="RateHUB Logo">
+            </div>
         </div>
     </nav>
 
@@ -102,34 +153,27 @@
         <h2>Filmes Cadastrados</h2>
 
         {% if filmes %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Diretor(a)</th>
-                        <th>Ano</th>
-                        <th>Gênero</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for filme in filmes %}
-                        <tr>
-                            <td>{{ filme.titulo }}</td>  
-                            <td>{{ filme.diretor }}</td>
-                            <td>{{ filme.ano }}</td>
-                            <td>{{ filme.get_genero_display }}</td>
-                            <td>
-                                <a href="{% url 'visuComentariosAdmin' filme.id %}" class="btn-comentarios">Ver comentários</a>
-                            </td>
-                            <td>
-                                <a href="{% url 'verMaisFilmeAdmin' filme.id %}" class="btn-comentarios">Mais informações</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% for filme in filmes %}
+                <div class="container2">
+                    <p><span class="info-label">Título:</span> {{ filme.titulo }}</p>
+                    <p><span class="info-label">Diretor(a):</span> {{ filme.diretor }}</p>
+                    <p><span class="info-label">Ano de Lançamento:</span> {{ filme.ano }}</p>
+                    <p><span class="info-label">Gênero:</span> {{ filme.get_genero_display }}</p>
+            
+                    <p>
+                        <a href="{% url 'visuComentariosAdmin' filme.id %}" class="btn-comentarios">Ver comentários</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'verMaisFilmeAdmin' filme.id %}" class="btn-comentarios">Mais informações</a>
+                    </p>
+                    <p>
+                        <form action="{% url 'deletarFilmeAdmin' filme.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btndelete">Deletar</button>
+                        </form>
+                    </p>
+                </div>
+            {% endfor %}  
         {% else %}
             <p style="text-align: center;">Nenhum filme cadastrado ainda.</p>
         {% endif %}
