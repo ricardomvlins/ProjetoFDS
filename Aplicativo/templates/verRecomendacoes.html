@@ -88,19 +88,27 @@
 
     <div class="container">
         <h2>
-            {% if favoritos %}
-                Já que você favoritou 
-                {% for favorito in favoritos %}
-                    "{{ favorito.titulo }}"{% if not forloop.last %}, {% else %} talvez goste de: {% endif %}
-                {% endfor %}
-            {% else %}
-                Filmes Recomendados para Você
-            {% endif %}
+            Filmes Recomendados para Você
         </h2>        
         
         {% if filmes %}
             {% for filme in filmes %}
                 <div class="container2">
+                    <p>
+                        {% with filmes_correspondentes=favoritos|dictsort:"titulo" %}
+                        {% with exibiu=False %}
+                            {% for favorito in filmes_correspondentes %}
+                                {% if favorito.genero == filme.genero %}
+                                    {% if not forloop.first %}
+                                        Já que você gostou de <strong>{{ favorito.titulo }}</strong>, <strong>{{ favorito.ano }}</strong>
+                                    {% endif %}
+                                    {% with exibiu=True %}
+                                    {% endwith %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                        {% endwith %}
+                    </p>
                     <p><span class="info-label">Título:</span> {{ filme.titulo }}</p>
                     <p><span class="info-label">Diretor(a):</span> {{ filme.diretor }}</p>
                     <p><span class="info-label">Ano de Lançamento:</span> {{ filme.ano }}</p>

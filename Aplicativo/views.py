@@ -237,4 +237,9 @@ def recomendacoes(request):
     usuario = request.user
 
     recomendacoes = recomendarFilmesPorGenero(usuario)
-    return render(request, 'verRecomendacoes.html', {'filmes': recomendacoes})
+    favoritos = Filmes.objects.filter(favorito__usuario=usuario).distinct()
+
+    return render(request, 'verRecomendacoes.html', {
+        'filmes': recomendacoes,
+        'favoritos': favoritos,
+    })
