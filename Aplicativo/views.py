@@ -243,3 +243,50 @@ def recomendacoes(request):
         'filmes': recomendacoes,
         'favoritos': favoritos,
     })
+
+@login_required
+def editarFilmeAdmin(request, filme_id):
+    filme = get_object_or_404(Filmes, id=filme_id)
+
+    if request.method == 'POST':
+        titulo = request.POST.get('titulo', '').strip()
+        diretor = request.POST.get('diretor', '').strip()
+        ano = request.POST.get('ano', '').strip()
+        genero = request.POST.get('genero', '').strip()
+        tipo = request.POST.get('tipo', '').strip()
+        sinopse = request.POST.get('sinopse', '').strip()
+
+        if not titulo or not diretor or not ano or not genero or not tipo or not sinopse:
+            messages.error(request, 'Todos os campos sãop obrigatórios.')
+
+        try:
+            ano = int(ano)
+        except (ValueError, TypeError):
+            messages.error(request, 'O campo "ano" deve ser preenchido com um número válido.')
+            return render(request, 'editarFilmeAdmin.html', {'filme': filme})
+    
+        alterado = (
+            titulo != filme.titulo or
+            diretor != filme.diretor or
+            ano!= str(filme.ano) or
+            genero != filme.genero or
+            tipo != filme.tipo or
+            sinopse != filme.sinopse
+        )
+
+        if alterado:
+            filme.titulo = titulo
+            filme.diretor = diretor
+            filme.ano = ano
+            filme.genero = genero
+            filme.tipo = tipo
+            filme.sinopse = sinopse
+            filme.save()
+            
+            mensagem="Informações atualizadas com sucesso!"
+            return render(request, 'editarFilmeAdmin.html', {'filme': filme, 'mensagem': mensagem, 'tipo_mensagem': 'success'})
+        else:
+            mensagem="Você precisa alterar alguma informação."
+            return render(request, 'editarFilmeAdmin.html', {'filme': filme, 'mensagem': mensagem, 'tipo_mensagem': 'success'})
+
+    return render(request, 'editarFilmeAdmin.html', {'filme': filme})

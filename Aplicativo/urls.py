@@ -19,4 +19,5 @@ urlpatterns = [
     path('filmes/<int:filme_id>/verMaisFilmeUser', views.verMaisFilmeUser, name='verMaisFilmeUser'),
     path('filmes/<int:filme_id>/deletarFilmeAdmin', views.deletarFilmeAdmin, name='deletarFilmeAdmin'),
     path('recomendacoes/', views.recomendacoes, name='recomendacoes'),
+    path('filmes/<int:filme_id>/editarFilmeAdmin', views.editarFilmeAdmin, name='editarFilmeAdmin'),
 ]

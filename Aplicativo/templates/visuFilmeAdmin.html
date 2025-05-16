@@ -167,6 +167,12 @@
                         <a href="{% url 'verMaisFilmeAdmin' filme.id %}" class="btn-comentarios">Mais informações</a>
                     </p>
                     <p>
+                        <form action="{% url 'editarFilmeAdmin' filme.id %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn-comentarios">Editar</button>
+                        </form>
+                    </p>
+                    <p>
                         <form action="{% url 'deletarFilmeAdmin' filme.id %}" method="POST">
                             {% csrf_token %}
                             <button type="submit" class="btndelete">Deletar</button>

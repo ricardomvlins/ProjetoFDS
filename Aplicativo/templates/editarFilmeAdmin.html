@@ -114,7 +114,7 @@
     </nav>
 
     <div class="container">
-        <h2>Adicionar Filme</h2>
+        <h2>Editar Filme</h2>
 
         {% if mensagem %}
             <div class="mensagem {% if tipo_mensagem == 'success' %}mensagem-sucesso{% else %}mensagem-erro{% endif %}">
@@ -124,11 +124,18 @@
 
         <form method="POST">
             {% csrf_token %}
-            <input type="text" name="titulo" placeholder="Título do Filme">
-            <input type="text" name="diretor" placeholder="Diretor(a)">
-            <input type="number" name="ano" placeholder="Ano de Lançamento">
-            <select name="genero" required>
-                <option value="">Gênero</option>
+
+            <label for="titulo">Título</label>
+            <input type="text" name="titulo" value="{{ filme.titulo }}">
+
+            <label for="diretor">Diretor</label>
+            <input type="text" name="diretor" value="{{ filme.diretor }}">
+
+            <label for="ano">Ano</label>
+            <input type="number" name="ano" value="{{ filme.ano }}">
+
+            <label for="genero">Gênero</label>
+            <select name="genero" value="{{ filme.get_genero_display }}" required>
                 <option value="acao">Ação</option>
                 <option value="terror">Terror</option>
                 <option value="comedia">Comédia</option>
@@ -145,12 +152,17 @@
                 <option value="biografia">Biografia</option>
                 <option value="esporte">Esporte</option>
             </select>
-            <select name="tipo" required>
+
+            <label for="tipo">Tipo</label>
+            <select name="tipo" value="{{ filme.get_tipo_display }}" required>
                 <option value="live-action">Live Action</option>
                 <option value="animacao">Animação</option>
             </select>
-            <input type="text" name="sinopse" placeholder="Sinopse">
-            <input type="submit" value="Cadastrar Filme">
+
+            <label for="sinopse">Sinopse</label>
+            <input type="text" name="sinopse" value="{{ filme.sinopse }}">
+
+            <button type="submit" class="btn1">Salvar alterações</button>
             <button type="button" class="btn1" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
             <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeAdmin' %}'">Ir para o Catálogo</button>
         </form>
