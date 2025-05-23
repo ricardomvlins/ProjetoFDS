@@ -189,3 +189,7 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 <br>
 
 </details>
+
+<summary>Entrega 4</summary>
+
+<br>
