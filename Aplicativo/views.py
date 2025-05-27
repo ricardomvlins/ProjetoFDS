@@ -95,6 +95,7 @@ def filmes(request):
         genero = request.POST.get('genero', '').strip()
         tipo = request.POST.get('tipo', '').strip()
         sinopse = request.POST.get('sinopse','').strip()
+        cartaz = request.FILES.get('cartaz')
 
         if not titulo or not diretor or not ano or not genero or not tipo or not sinopse:
             mensagem = "Todos os campos são obrigatórios!"
@@ -113,6 +114,7 @@ def filmes(request):
             genero=genero,
             tipo=tipo,
             sinopse=sinopse,
+            cartaz=cartaz,
         )
         novo_filme.save()
 

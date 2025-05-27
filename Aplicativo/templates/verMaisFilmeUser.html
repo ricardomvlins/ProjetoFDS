@@ -27,7 +27,7 @@
             color: white;
             border: none;
             padding: 12px;
-            width: 100%;
+            width: 208%;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
@@ -39,9 +39,21 @@
             color: white;
         }
 
+        .btn:first-of-type {
+            margin-bottom: 15px;
+        }
+
         .logo img {
             width: 150px;
             height: auto;
+        }
+    
+        .cartaz-filme {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
     </style>
@@ -56,22 +68,30 @@
         </div>
     </nav>
     
-    <div class="container">
-        <h2>{{ filme.titulo }}</h2>
+    <div class="container d-flex gap-4">
+        <div style="flex: 1;">
+            <h2>{{ filme.titulo }}</h2>
 
-        <p><span class="info-label">Diretor(a):</span> {{ filme.diretor }}</p>
-        <p><span class="info-label">Ano de Lançamento:</span> {{ filme.ano }}</p>
-        <p><span class="info-label">Gênero:</span> {{ filme.get_genero_display }}</p>
-        <p><span class="info-label">Tipo:</span> {{ filme.get_tipo_display}}</p>
+            <p><span class="info-label">Diretor(a):</span> {{ filme.diretor }}</p>
+            <p><span class="info-label">Ano de Lançamento:</span> {{ filme.ano }}</p>
+            <p><span class="info-label">Gênero:</span> {{ filme.get_genero_display }}</p>
+            <p><span class="info-label">Tipo:</span> {{ filme.get_tipo_display }}</p>
 
-        {% if filme.sinopse %}
-            <p><span class="info-label">Sinopse:</span> {{ filme.sinopse }}</p>
-        {% else %}
-            <p><span class="info-label">Sinopse:</span> Não disponível.</p>
-        {% endif %}
+            {% if filme.sinopse %}
+                <p><span class="info-label">Sinopse:</span> {{ filme.sinopse }}</p>
+            {% else %}
+                <p><span class="info-label">Sinopse:</span> Não disponível.</p>
+            {% endif %}
 
-        <button type="button" class="btn" onclick="location.href='{% url 'visuFilmeUser' %}'">Voltar ao Catálogo</button>
-        <button type="button" class="btn" onclick="location.href='{% url 'homeUser' %}'">Voltar à Home</button>
+            <button type="button" class="btn" onclick="location.href='{% url 'visuFilmeUser' %}'">Voltar ao Catálogo</button>
+            <button type="button" class="btn" onclick="location.href='{% url 'homeUser' %}'">Voltar à Home</button>
+        </div>
+
+        <div style="flex: 1; display: flex; justify-content: center; align-items: flex-start;">
+            {% if filme.cartaz %}
+                <img src="{{ filme.cartaz.url }}" alt="Cartaz do filme {{ filme.titulo }}" class="cartaz-filme">
+            {% endif %}
+        </div>
     </div>
 
 </body>

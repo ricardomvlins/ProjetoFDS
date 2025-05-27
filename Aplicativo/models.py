@@ -39,6 +39,7 @@ class Filmes(models.Model):
     genero = models.CharField(max_length=50, choices=GENERO_CHOICES)
     tipo = models.CharField(max_length=50, choices=TIPO_CHOICES)
     sinopse = models.TextField(default='Sinopse não informada.')
+    cartaz = models.ImageField(upload_to='imagens/', default='cartaz.jpg')
 
     def __str__(self):
         return self.titulo
