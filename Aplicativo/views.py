@@ -296,7 +296,7 @@ def editarFilmeAdmin(request, filme_id):
     return render(request, 'editarFilmeAdmin.html', {'filme': filme})
 
 @login_required
-def buscarFilme(request):
+def buscarFilmeUser(request):
     query = request.GET.get('q', '')
     filmes = Filmes.objects.all()
 
@@ -309,3 +309,50 @@ def buscarFilme(request):
         'filmes': filmes,
         'query': query
     })
+
+@login_required
+def buscarFilmeAdmin(request):
+    query = request.GET.get('q', '')
+    filmes = Filmes.objects.all()
+
+    if query:
+        filmes = filmes.filter(
+            Q(titulo__icontains=query) | Q(genero__icontains=query)
+        )
+
+    return render(request, 'visuFilmeAdmin.html', {
+        'filmes': filmes,
+        'query': query
+    })
+
+@login_required
+def verMaisMissaoImpossivelUser(request):
+    return render(request, 'verMaisMissaoImpossivelUser.html')
+
+@login_required
+def verMaisLiloStitchUser(request):
+    return render(request, 'verMaisLilo&StitchUser.html')
+
+@login_required
+def verMaisThunderboltsUser(request):
+    return render(request, 'verMaisThunderboltsUser.html')
+
+@login_required
+def verMaisPremonicaoUser(request):
+    return render(request, 'verMaisPremonicaoUser.html')
+
+@login_required
+def verMaisMissaoImpossivelAdmin(request):
+    return render(request, 'verMaisMissaoImpossivelAdmin.html')
+
+@login_required
+def verMaisLiloStitchAdmin(request):
+    return render(request, 'verMaisLilo&StitchAdmin.html')
+
+@login_required
+def verMaisThunderboltsAdmin(request):
+    return render(request, 'verMaisThunderboltsAdmin.html')
+
+@login_required
+def verMaisPremonicaoAdmin(request):
+    return render(request, 'verMaisPremonicaoAdmin.html')

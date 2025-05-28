@@ -83,17 +83,17 @@
         <h1 class="text" style="font-weight: bold;" >Bem-vindo ao RateHUB!</h1>
         <h3 class="text" style="font-weight: bold;" >Filmes em Cartaz</h3>
         <div class="d-flex align-items-center gap-5">
-            <a href="{% url 'verMaisFilmeAdmin' filme_id=19 %}">
-                <img src="{% static '/imagens/MissaoImpossivel.jpeg' %}" alt="Cartaz" class="cartaz-filme">
+            <a href="{% url 'verMaisMissaoImpossivelAdmin'%}">
+                <img src="{% static 'imagens/MissaoImpossivel.jpeg' %}" alt="Cartaz" class="cartaz-filme">
             </a>
-            <a href="{% url 'verMaisFilmeAdmin' filme_id=21 %}">
-                <img src="{% static '/imagens/Thunderbolts.jpeg' %}" alt="Cartaz" class="cartaz-filme">
+            <a href="{% url 'verMaisThunderboltsAdmin' %}">
+                <img src="{% static 'imagens/Thunderbolts.jpeg' %}" alt="Cartaz" class="cartaz-filme">
             </a>
-            <a href="{% url 'verMaisFilmeAdmin' filme_id=22 %}">
-                <img src="{% static '/imagens/Stich.jpg' %}" alt="Cartaz" class="cartaz-filme">
+            <a href="{% url 'verMaisLiloStitchAdmin' %}">
+                <img src="{% static 'imagens/Stich.jpg' %}" alt="Cartaz" class="cartaz-filme">
             </a>
-            <a href="{% url 'verMaisFilmeAdmin' filme_id=20 %}">
-                <img src="{% static '/imagens/Premonicao.webp' %}" alt="Cartaz" class="cartaz-filme">
+            <a href="{% url 'verMaisPremonicaoAdmin' %}">
+                <img src="{% static 'imagens/Premonicao.webp' %}" alt="Cartaz" class="cartaz-filme">
             </a>
         </div>
     </div>

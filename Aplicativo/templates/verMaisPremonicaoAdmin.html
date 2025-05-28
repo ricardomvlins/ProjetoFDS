@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Filme</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .info-label {
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #00a0e4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 208%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.3s ease; 
+            display: inline-block;
+        }
+      
+        .btn:hover {
+            background-color: #007bbd;
+            color: white;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .btn:first-of-type {
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+    
+        .cartaz-filme {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="{% static '/imagens/logo_RateHUB.png' %}" alt="RateHUB Logo" style="width: 150px; height: auto;">
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container d-flex gap-4">
+        <div style="flex: 1;">
+            <h2 style="font-weight: bold;">Premonição 6: Laços de Sangue</h2>
+            <p><span class="info-label">Diretor(a):</span> Zach Lipovsky e Adam B. Stein</p>
+            <p><span class="info-label">Ano de Lançamento:</span> 2025</p>
+            <p><span class="info-label">Gênero:</span> Terror</p>
+            <p><span class="info-label">Tipo:</span> Live Action</p>
+            <p><span class="info-label">Sinopse:</span> Stefanie, uma jovem que tem pesadelos sobre a morte de sua família, busca a ajuda da avó, Iris, para entender essas visões. Iris revela que teve uma premonição que lhe permitiu salvar muitas vidas em um desastre, mas que a Morte, incomodada com a perda, colocou uma maldição sobre sua descendência. Stefanie e sua família precisam encontrar um caminho para quebrar o ciclo de morte e escapar da maldição. </p>
+            <button type="button" class="btn" onclick="location.href='{% url 'visuFilmeAdmin' %}'">Voltar ao Catálogo</button>
+            <button type="button" class="btn" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
+        </div>
+
+        <div style="flex: 1; display: flex; justify-content: center; align-items: flex-start;">
+            <img src="{% static 'imagens/Premonicao.webp' %}" alt="Cartaz" class="cartaz-filme">
+        </div>
+    </div>
+
+</body>
+
+<footer style="background-color: #212529; padding: 20px 0; text-align: center; font-size: 14px; color: #fff; margin-top: 40px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <p><strong>&copy; 2025 CESAR School. Todos os direitos reservados.</strong></p>
+        <p>
+            Desenvolvido por <a href="https://www.seusite.com" style="color: #66b2ff; text-decoration: none;">Equipe de Desenvolvimento</a> |
+            <a href="/politica-privacidade/" style="color: #66b2ff; text-decoration: none;">Política de Privacidade</a> |
+            <a href="/termos-de-uso/" style="color: #66b2ff; text-decoration: none;">Termos de Uso</a>
+        </p>
+        <p><a href="https://github.com/GUSTAVO-PEDROSA-MIRANDA/ProjetoFDS.git" style="color: #66b2ff;">Repositório GitHUB</a></p>
+        <p>CNPJ: 00.000.000/0000-00 | Endereço: Avenida Cais do Apolo, 77 - Recife, Pernambuco, Brasil</p>
+    </div>
+</footer>
+
+</html>
