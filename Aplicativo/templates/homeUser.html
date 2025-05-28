@@ -42,6 +42,14 @@
             padding-left: 0px; 
         }
 
+        
+        .cartaz-filme {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
       
     </style>
 </head>
@@ -64,9 +72,37 @@
     
 
     <div class="container text-center mt-5">
-        <h1 class="text">Bem-vindo ao RateHUB!</h1>
-        
+        <h1 class="text" style="font-weight: bold;" >Bem-vindo ao RateHUB!</h1>
+        <h3 class="text" style="font-weight: bold;" >Filmes em Cartaz</h3>
+        <div class="d-flex align-items-center gap-5">
+            <a href="{% url 'verMaisFilmeUser' filme_id=19 %}">
+                <img src="{% static '/imagens/MissaoImpossivel.jpeg' %}" alt="Cartaz" class="cartaz-filme">
+            </a>
+            <a href="{% url 'verMaisFilmeUser' filme_id=21 %}">
+                <img src="{% static '/imagens/Thunderbolts.jpeg' %}" alt="Cartaz" class="cartaz-filme">
+            </a>
+            <a href="{% url 'verMaisFilmeUser' filme_id=22 %}">
+                <img src="{% static '/imagens/Stich.jpg' %}" alt="Cartaz" class="cartaz-filme">
+            </a>
+            <a href="{% url 'verMaisFilmeUser' filme_id=20 %}">
+                <img src="{% static '/imagens/Premonicao.webp' %}" alt="Cartaz" class="cartaz-filme">
+            </a>
+        </div>
     </div>
-
 </body>
+
+<footer style="background-color: #212529; padding: 20px 0; text-align: center; font-size: 14px; color: #fff; margin-top: 40px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <p><strong>&copy; 2025 CESAR School. Todos os direitos reservados.</strong></p>
+        <p>
+            Desenvolvido por <a href="https://www.seusite.com" style="color: #66b2ff; text-decoration: none;">Equipe de Desenvolvimento</a> |
+            <a href="/politica-privacidade/" style="color: #66b2ff; text-decoration: none;">Política de Privacidade</a> |
+            <a href="/termos-de-uso/" style="color: #66b2ff; text-decoration: none;">Termos de Uso</a>
+        </p>
+        <p><a href="https://github.com/GUSTAVO-PEDROSA-MIRANDA/ProjetoFDS.git" style="color: #66b2ff;">Repositório GitHUB</a></p>
+        <p>CNPJ: 00.000.000/0000-00 | Endereço: Avenida Cais do Apolo, 77 - Recife, Pernambuco, Brasil</p>
+    </div>
+</footer>
+
+
 </html>

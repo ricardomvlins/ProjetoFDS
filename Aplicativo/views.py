@@ -6,12 +6,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
+from django.db.models import Q
 
 def homeAdmin(request):
     return render(request, 'homeAdmin.html')
 
 def homeUser(request):
-    return render(request, 'homeUser.html')
+    filmes = Filmes.objects.all()
+    return render(request, 'homeUser.html', {'filmes': filmes})
 
 def login_view(request):
     if request.method == 'POST':
@@ -292,3 +294,18 @@ def editarFilmeAdmin(request, filme_id):
             return render(request, 'editarFilmeAdmin.html', {'filme': filme, 'mensagem': mensagem, 'tipo_mensagem': 'success'})
 
     return render(request, 'editarFilmeAdmin.html', {'filme': filme})
+
+@login_required
+def buscarFilme(request):
+    query = request.GET.get('q', '')
+    filmes = Filmes.objects.all()
+
+    if query:
+        filmes = filmes.filter(
+            Q(titulo__icontains=query) | Q(genero__icontains=query)
+        )
+
+    return render(request, 'visuFilmeUser.html', {
+        'filmes': filmes,
+        'query': query
+    })

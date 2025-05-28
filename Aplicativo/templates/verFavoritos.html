@@ -121,7 +121,7 @@
     </nav>
 
     <div class="container">
-        <h2>Meus Favoritos</h2>
+        <h2 style="font-weight: bold;">Meus Favoritos</h2>
 
         {% if filmes %}
             {% for filme in filmes %}
@@ -139,4 +139,18 @@
         <button class="btn" onclick="location.href='{% url 'homeUser' %}'">Voltar à Home</button>
     </div>
 </body>
+
+<footer style="background-color: #212529; padding: 20px 0; text-align: center; font-size: 14px; color: #fff; margin-top: 40px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <p><strong>&copy; 2025 CESAR School. Todos os direitos reservados.</strong></p>
+        <p>
+            Desenvolvido por <a href="https://www.seusite.com" style="color: #66b2ff; text-decoration: none;">Equipe de Desenvolvimento</a> |
+            <a href="/politica-privacidade/" style="color: #66b2ff; text-decoration: none;">Política de Privacidade</a> |
+            <a href="/termos-de-uso/" style="color: #66b2ff; text-decoration: none;">Termos de Uso</a>
+        </p>
+        <p><a href="https://github.com/GUSTAVO-PEDROSA-MIRANDA/ProjetoFDS.git" style="color: #66b2ff;">Repositório GitHUB</a></p>
+        <p>CNPJ: 00.000.000/0000-00 | Endereço: Avenida Cais do Apolo, 77 - Recife, Pernambuco, Brasil</p>
+    </div>
+</footer>
+
 </html>
