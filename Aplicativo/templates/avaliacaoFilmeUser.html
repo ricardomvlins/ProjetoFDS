@@ -97,29 +97,16 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 20px;
+            transition: transform 0.3s ease; 
+            display: inline-block;
+            margin-bottom: 30px;
         }
 
         .btn:hover {
             background-color: #007bff;
             color: white;
-        }
-
-        .btn1 {
-            background-color: #00a0e4;
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 5px;
+            transform: scale(1.2);
             cursor: pointer;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 40px
-        }
-
-        .btn1:hover {
-            background-color: #007bff;
-            color: white;
         }
           
         .mensagem {
@@ -183,9 +170,9 @@
                 {% endfor %}
             </select>
 
-            <input type="submit" value="Enviar">
+            <input type="submit" class="btn" value="Enviar">
             <button type="button" class="btn" onclick="location.href='{% url 'homeUser' %}'">Voltar à Home</button>
-            <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeUser' %}'">Voltar ao Catálogo</button>
+            <button type="button" class="btn" onclick="location.href='{% url 'visuFilmeUser' %}'">Voltar ao Catálogo</button>
         </form>
 
         <h3>Comentários</h3>

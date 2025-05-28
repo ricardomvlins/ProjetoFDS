@@ -66,27 +66,35 @@
             color: #00a0e4;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease; 
+            display: inline-block;
           }
       
         .btn-comentarios:hover {
-        text-decoration: underline;
+            text-decoration: underline;
+            transform: scale(1.2);
+            cursor: pointer;
         }
 
         .btn {
-        background-color: #00a0e4;
-        color: white;
-        border: none;
-        padding: 12px;
-        width: 100%;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 20px;
+            background-color: #00a0e4;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: transform 0.3s ease; 
+            display: inline-block;
         }
     
         .btn:hover {
-        background-color: #007bbd;
-        color: white;
+            background-color: #007bbd;
+            color: white;
+            transform: scale(1.2);
+            cursor: pointer;
         }
 
         .btn1 {
@@ -97,10 +105,14 @@
             color: red;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease; 
+            display: inline-block;
           }
       
         .btn1:hover {
-        text-decoration: underline;
+            text-decoration: underline;
+            transform: scale(1.2);
+            cursor: pointer;
         }
 
         .logo img {
@@ -121,20 +133,22 @@
             font-weight: bold;
         }
 
-        .btndelete {
+        .btn-delete {
             background-color: #dc3545; /* vermelho Bootstrap */
             color: white;
             border: none;
             padding: 8px 16px;
             border-radius: 5px;
             font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: transform 0.3s ease; 
+            display: inline-block;
         }
         
-        .btndelete:hover {
+        .btn-delete:hover {
             background-color: #bb2d3b; /* vermelho mais escuro no hover */
             color: white;
+            transform: scale(1.2);
+            cursor: pointer;
         }
 
         .form-control {
@@ -198,7 +212,7 @@
                     <p>
                         <form action="{% url 'deletarFilmeAdmin' filme.id %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btndelete">Deletar</button>
+                            <button type="submit" class="btn-delete">Deletar</button>
                         </form>
                     </p>
                 </div>

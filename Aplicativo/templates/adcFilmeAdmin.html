@@ -88,11 +88,15 @@
             font-weight: bold;
             margin-top: 20px;
             margin-bottom: 20px;
+            transition: transform 0.3s ease; 
+            display: inline-block;
         }
 
         .btn1:hover {
             background-color: #007bff;
             color: white;
+            transform: scale(1.2);
+            cursor: pointer;
         }
 
         .logo img {
@@ -166,7 +170,7 @@
                 <small class="form-text text-muted">JPG ou PNG.</small>
             </div>
 
-            <input type="submit" value="Cadastrar Filme">
+            <input type="submit" class="btn1" value="Cadastrar Filme">
             <button type="button" class="btn1" onclick="location.href='{% url 'homeAdmin' %}'">Voltar ao Gerenciamento</button>
             <button type="button" class="btn1" onclick="location.href='{% url 'visuFilmeAdmin' %}'">Ir para o Catálogo</button>
         </form>
