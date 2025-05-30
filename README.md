@@ -50,17 +50,17 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 <p style="text-align: center; text-decoration: none;">
   <a href="https://youtu.be/oxTLIv9bLuc" style="text-decoration: none;">
-    <span>🔗 Screencast do protótipo Lo-Fi (1)</span>
+    <span>🔗 Screencast do Protótipo Lo-Fi (1)</span>
   </a>
 </p>
 
 <br>
 
-###  Histórias de usuário
+###  Histórias de Usuário
 
 <p style="text-align: center; text-decoration: none;">
   <a href="https://docs.google.com/document/d/1C1ATiOkRgh8XGtK15K-kD0kUU0PCHFfOijy_YYP672U/edit?usp=sharing" style="text-decoration: none;">
-    <span>🔗 Histórias de usuário</span>
+    <span>🔗 Histórias de Usuário</span>
   </a>
 </p>
 
@@ -107,17 +107,17 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 <br>
 
-###  Screencast do uso do sistema
+###  Screencast do Uso do Sistema
 
 <p style="text-align: center; text-decoration: none;">
   <a href="https://youtu.be/gY1Ld1SbdPE" style="text-decoration: none;">
-    <span>🔗 Screencast do uso do sistema</span>
+    <span>🔗 Screencast do Uso do Sistema</span>
   </a>
 </p>
 
 <br>
 
-### Issue/bug tracker
+### Issue/bug Tracker
 
 ![Captura de tela 2025-04-08 002644](https://github.com/user-attachments/assets/34145bd1-7b30-4ae0-ad2e-b843779f8d15)
 
@@ -182,7 +182,7 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 
 <br>
 
-### Issue/bug tracker
+### Issue/bug Tracker
 
 ![Captura de tela 2025-04-30 224340](https://github.com/user-attachments/assets/1049f8bd-e049-434b-b990-7e2163cbaf0a)
 
@@ -199,10 +199,47 @@ RateHUB é um software desenvolvido no framework Django, projetado para oferecer
 ###  Screencast dos Testes Automatizados
 
 <p style="text-align: center; text-decoration: none;">
-  <a href="https://youtu.be/Ky1d9fPZvk8" style="text-decoration: none;">
-    <span>🔗 Screencast Testes Automatizados </span>
+  
+</p>
+
+<br>
+
+### Jira Quadro Sprint 3
+
+![Captura de tela 2025-05-30 172420](https://github.com/user-attachments/assets/5efd0e0f-43da-4f57-b64b-ae7b8797e3db)
+
+<br>
+
+### Relato da Programação em Par Atualizado
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://docs.google.com/document/d/14w17ZBxP--UPO2CSFO2fqitYYlqqw0XzFb__opg94ps/edit?usp=sharing" style="text-decoration: none;">
+    <span>🔗 Relato da Programação em Par Atualizado </span> 
   </a>
 </p>
 
 <br>
 
+###  Screencast do Uso na Azure
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/5iArQMnSwmo?si=vZNHRvLKnksYrtMi" style="text-decoration: none;">
+    <span>🔗 Screencast Azure </span>
+  </a>
+</p>
+
+<br>
+
+### Issue/bug Tracker
+
+![Captura de tela 2025-05-30 180933](https://github.com/user-attachments/assets/5e4f9f4a-913a-4202-942b-20398a8da2bf)
+
+<br>
+
+###  Screencast do Protótipo no Figma
+
+<p style="text-align: center; text-decoration: none;">
+  <a href="https://youtu.be/oxTLIv9bLuc" style="text-decoration: none;">
+    <span>🔗 Screencast Figma </span>
+  </a>
+</p>
