@@ -20,7 +20,7 @@ Você pode colocar uma nova funcionalidade em prática, solucionar alguma issue 
 <strong>1º) Fork do Repositório:</strong> Faça um Fork para levar uma cópia do repositório para a sua conta.  Dessa forma, você pode realizar suas modificações sem impactar o repositório original. 
 <br>
 <p align="center">
-  <img src="https://private-user-images.githubusercontent.com/186208945/449443920-c8e0e88b-a9fd-469c-bafe-1934a3d6bdd7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDg2NTc0NTQsIm5iZiI6MTc0ODY1NzE1NCwicGF0aCI6Ii8xODYyMDg5NDUvNDQ5NDQzOTIwLWM4ZTBlODhiLWE5ZmQtNDY5Yy1iYWZlLTE5MzRhM2Q2YmRkNy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTMxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUzMVQwMjA1NTRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mMmQ0YWJhNThkYjhkY2Y5MmRiMWY5ODc2YzdkZDQ4OWYwMTY4NDgzNjM5YWExMDJiNTMzMWZkM2YwYTAwYjVkJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.QK-4VyeBqnvo1jSWzAN_lTdCfGfiGmuiT72ksl0kyu4G">
+  <img src="Aplicativo/static/imagens/contributing1.png">
 </p>
 
 <strong>2º) Clonar o repositório:</strong> 
